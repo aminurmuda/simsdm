@@ -2,7 +2,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to {{name}}
+                    Welcome to {{name}}<i class="material-icons">star</i>
                 </div>
                 <div class="links">
                     <a href="https://laravel.com/docs">View Laravel Docs</a>

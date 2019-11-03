@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "bulma": "^0.8.0"
+        "bulma": "^0.8.0",
+        "material-design-icons": "^3.0.1"
     }
 }

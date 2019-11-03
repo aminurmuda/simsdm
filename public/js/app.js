@@ -37897,7 +37897,8 @@ var render = function() {
   return _c("div", { staticClass: "flex-center position-ref full-height" }, [
     _c("div", { staticClass: "content" }, [
       _c("div", { staticClass: "title m-b-md" }, [
-        _vm._v("\n            Welcome to " + _vm._s(_vm.name) + "\n        ")
+        _vm._v("\n            Welcome to " + _vm._s(_vm.name)),
+        _c("i", { staticClass: "material-icons" }, [_vm._v("star")])
       ]),
       _vm._v(" "),
       _vm._m(0)
