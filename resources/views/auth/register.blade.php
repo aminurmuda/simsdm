@@ -1,9 +1,8 @@
 @extends('layouts.app')
-
+@section('page-title', 'Register')
 @section('content')
-<div class="container">
-    <div class="">
-        <div class="">
+<div class="container is-flex justify-content-center">
+    <div class="w-50">
         <div class="card">
                 <div class="card-header">
                     <p class="card-header-title">
