@@ -2,6 +2,8 @@
 @section('page-title', 'Welcome')
 @section('content')
 <div class="container">
-    Welcome
+    <div class="mt-2">
+        <h1 class="title">Welcome to SIMSDM, {{ Auth::user()->name }}</h1>
+    </div>
 </div>
 @endsection

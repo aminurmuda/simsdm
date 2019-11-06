@@ -18,3 +18,27 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Route::prefix('/users')->group(function () {
+//     Route::get('/', 'UserController@index');
+//     Route::get('/create', 'UserController@create');
+//     Route::get('/{id}', 'UserController@show');
+//     Route::get('/{id}/edit', 'UserController@edit');
+//     Route::get('/users', 'UserController@index');
+//     Route::get('/users', 'UserController@index');
+// });
+
+Route::resource('/users', 'UserController');
+
+Route::resource('/projects', 'ProjectController');
+
+// Route::prefix('projects')->group(function () {
+//     Route::get('/', 'ProjectController@index');
+//     Route::post('/', 'ProjectController@store');
+//     Route::get('/create', 'ProjectController@create');
+//     Route::get('/{project}', 'ProjectController@show');
+//     Route::put('/{project}', 'ProjectController@update');
+//     Route::delete('/{project}', 'ProjectController@destroy');
+//     Route::get('/{project}/edit', 'ProjectController@edit')->name('edit');
+// });

@@ -2,7 +2,7 @@
 @section('page-title', 'Login')
 @section('content')
 <div class="container is-flex justify-content-center">
-    <div class="w-50">
+    <div class="">
         
         <div class="card">
             <div class="card-header">
@@ -51,7 +51,7 @@
 
                         <div class="field">
                             <div class="control is-flex align-items-center">
-                                <button type="submit" class="button is-primary is-small">
+                                <button type="submit" class="button is-primary">
                                     {{ __('Login') }}
                                 </button>
 
