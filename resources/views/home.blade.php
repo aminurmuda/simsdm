@@ -11,7 +11,7 @@
                 </p>
                 </div>
 
-                <div class="card-content">
+                <!-- <div class="card-content">
                     <div class="content">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -21,9 +21,24 @@
 
                         You are logged in!
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
+    </div>
+
+    <div class="mt-2 box">
+        Saat ini anda memiliki:<br>
+        <ul>
+            <li>
+            {{$divisions}} divisi
+            </li>
+            <li>
+            {{$departments}} departemen
+            </li>
+            <li>
+            {{$projects}} proyek
+            </li>
+        </ul>
     </div>
 </div>
 @endsection

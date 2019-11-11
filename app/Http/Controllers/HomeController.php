@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Division;
+use App\Department;
+use App\Project;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $divisions = count(Division::all());
+        $departments = count(Department::all());
+        $projects = count(Project::all());
+        return view('home', compact('divisions', 'departments', 'projects'));
     }
 }

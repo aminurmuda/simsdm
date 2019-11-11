@@ -37,6 +37,9 @@
                     </a>
 
                     <div class="navbar-dropdown">
+                        <a class="navbar-item" href="/users/{{ Auth::user()->id }}">
+                            Profil
+                        </a>
                         <a class="navbar-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             Logout
                         </a>
