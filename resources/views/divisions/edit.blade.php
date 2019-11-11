@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="container">
-        <h1 class="title">Update Project</h1>
+        <h1 class="title">Update Division</h1>
         <div class="box">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -16,28 +16,28 @@
                 </div><br />
             @endif
 
-            <form method="post" action="{{ route('projects.update', $project->id) }}">
+            <form method="post" action="{{ route('divisions.update', $division->id) }}">
                 @method('PATCH')
                 @csrf
                 <div class="field">
                     <div class="control">
-                        <input type="text" class="input" name="name" value="{{ $project->name }}" placeholder="Nama Proyek"/>
+                        <input type="text" class="input" name="name" value="{{ $division->name }}" placeholder="Nama Divisi"/>
                     </div>
                 </div>
                 <div class="field">
                     <div class="control">
-                        <textarea class="textarea" name="description"placeholder="Deskripsi">{{ $project->description }}</textarea>
+                        <textarea class="textarea" name="description"placeholder="Deskripsi">{{ $division->description }}</textarea>
                     </div>
                 </div>
                 <div class="field">
                     <div class="control">
-                        <div class="columns">
-                            <div class="column is-6">
-                                <input type="date" class="input" name="start_date" value="{{ $project->start_date }}" />
-                            </div>
-                            <div class="column is-6">                        
-                                <input type="date" class="input" name="end_date" value="{{ $project->end_date }}" />
-                            </div>
+                        <div class="select is-fullwidth">
+                            <select name="manager_id" id="">
+                                <option value="" disabled=true>-- Pilih Manager --</option>
+                                @foreach($managers as $manager)
+                                <option value="{{$manager->id}}" {{ $division->manager_id == $manager->id ? 'selected' : '' }}>{{$manager->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>

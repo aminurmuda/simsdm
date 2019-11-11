@@ -30,13 +30,27 @@
                     </div>
                 </div>
 
+                <input style="display:none;" type="password" class="input" name="password" value="{{ $user->password }}" placeholder="Pasword"/>
+                
                 <div class="field">
                     <div class="control">
-                    <input type="password" class="input" name="password" value="{{ $user->password }}" placeholder="Pasword"/>
+                        <textarea class="textarea" name="address"placeholder="Alamat Anda">{{ $user->address }}</textarea>
                     </div>
                 </div>
 
-                <button type="submit" class="button is-primary">Buat</button>
+                <div class="field">
+                    <div class="control">
+                    <input type="text" class="input" name="birth_place" value="{{ $user->birth_place }}" placeholder="Tempat Lahir Anda"/>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input type="date" class="input" name="birth_date" value="{{ $user->birth_date }}" />
+                    </div>
+                </div>
+
+                <button type="submit" class="button is-primary">Simpan</button>
             </form>
         </div>
     </div>

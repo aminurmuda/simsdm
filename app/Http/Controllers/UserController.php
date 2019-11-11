@@ -35,6 +35,9 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|max:255',
             'password' => 'required|max:255',
+            'address' => 'required|max:255',
+            'birth_place' => 'required|max:255',
+            'birth_date' => 'required',
         ]);
         User::whereId($id)->update($validatedData);
 

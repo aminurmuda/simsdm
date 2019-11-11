@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\ProjectsUsers;
+use App\User;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -29,12 +31,33 @@ class ProjectController extends Controller
 
     public function show($id) {
         $project = Project::findOrFail($id);
-        return view('projects.show', compact('project'));
+        $manager = User::find($project->manager_id);
+        $members = ProjectsUsers::select('users.id', 'users.name', 'users.email')->where('project_id', $project->id)
+        ->leftJoin('users', 'users.id', '=', 'projects_users.user_id')
+        ->get();
+        return view('projects.show', compact('project', 'manager', 'members'));
     }
 
     public function edit($id) {
         $project = Project::findOrFail($id);
         return view('projects.edit', compact('project'));
+    }
+    
+    public function assignManager($id) {
+        $project = Project::findOrFail($id);
+        $managers = User::all();
+        return view('projects.assign-manager', compact('project', 'managers'));
+    }
+
+    public function storeAssignManager(Request $request, $id) {
+        $project = Project::findOrFail($id);
+        $project->manager_id = $request['manager_id'];
+        $project->save();
+        $manager = User::find($project->manager_id);
+        $members = ProjectsUsers::select('users.id', 'users.name', 'users.email')->where('project_id', $project->id)
+        ->leftJoin('users', 'users.id', '=', 'projects_users.user_id')
+        ->get();
+        return view('projects.show', compact('project', 'manager', 'members'));
     }
 
     public function update(Request $request, $id) {

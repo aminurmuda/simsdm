@@ -14,9 +14,14 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
+                @guest
                 <a href="/" class="px-2 navbar-item">Beranda</a>
+                @else
                 <a href="/users" class="px-2 navbar-item">User</a>
+                <a href="/divisions" class="px-2 navbar-item">Divisi</a>
+                <a href="/departments" class="px-2 navbar-item">Departemen</a>
                 <a href="/projects" class="px-2 navbar-item">Proyek</a>
+                @endguest
             </div>
             
             <div class="navbar-end">
