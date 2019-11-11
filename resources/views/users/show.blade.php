@@ -7,9 +7,12 @@
         
         <h1 class="title">Data Diri</h1>
         <div class="box">
+            <!-- can edit if their own profile or has admin role (role with id 1) -->
+            @if(Auth::user()->id == $user->id || Auth::user()->role_id == 1)
             <div class="is-flex justify-content-end">
                 <a href="/users/{{$user->id}}/edit" class="button is-primary">Edit</a>
             </div>
+            @endif
             <div class="columns mt-1">
                 <div class="column is-2 has-text-weight-bold">Nama</div>
                 <div class="column">{{$user->name}}</div>        

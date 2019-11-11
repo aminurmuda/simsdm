@@ -9,8 +9,11 @@
         <div class="box">
             <div class="is-flex justify-content-end">
                 <div>
+                    <!-- can edit if manager of this division or has admin role (role with id 1) -->
+                    @if(Auth::user()->id == $project->manager_id || Auth::user()->role_id == 1)            
                     <a href="{{ route('projects.edit',$project->id)}}" class="button is-primary">Edit</a>
-                    @if(!$project->manager_id)
+                    @endif
+                    @if(!$project->manager_id && Auth::user()->role_id == 1)
                     <a href="/projects/{{$project->id}}/assign-manager" class="button is-link">Assign Project Manager</a>
                     @endif
                 </div>

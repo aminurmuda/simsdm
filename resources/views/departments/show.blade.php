@@ -7,11 +7,12 @@
         
         <h1 class="title">Department Details</h1>
         <div class="box">
+            <!-- can edit if manager of this department or has admin role (role with id 1) -->
+            @if(Auth::user()->id == $department->manager_id || Auth::user()->role_id == 1)    
             <div class="is-flex justify-content-end">
-                <div>
-                    <a href="{{ route('departments.edit',$department->id)}}" class="button is-primary">Edit</a>
-                </div>
+                <a href="{{ route('departments.edit',$department->id)}}" class="button is-primary">Edit</a>
             </div>
+            @endif
             <div class="columns mt-1">
                 <div class="column is-2 has-text-weight-bold">Nama</div>
                 <div class="column">{{$department->name}}</div>        
