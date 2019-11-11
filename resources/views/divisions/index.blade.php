@@ -4,9 +4,12 @@
 @section('content')
 
     <div class="container">
+        <!-- can create if has admin role (role with id 1) -->
+        @if(Auth::user()->role_id == 1)
         <div class="is-flex justify-content-end">
             <a href="/divisions/create" class="button is-success">Buat</a>
         </div>
+        @endif
         <div class="box mt-1">
             <div class="columns is-hcentered">
                 <div class="column is-2 has-text-weight-bold">Nama</div>        
