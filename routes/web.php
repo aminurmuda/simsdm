@@ -33,7 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/users', 'UserController');
     Route::resource('/projects', 'ProjectController');
     Route::get('/projects/{id}/assign-manager', 'ProjectController@assignManager');
+    Route::get('/projects/{id}/assign-member', 'ProjectController@assignMember');
     Route::put('/projects/{id}/store-assign-manager', 'ProjectController@storeAssignManager');
+    Route::put('/projects/{id}/store-assign-member', 'ProjectController@storeAssignMember');
     Route::resource('/divisions', 'DivisionController');
     Route::resource('/departments', 'DepartmentController');
 });

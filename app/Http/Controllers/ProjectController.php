@@ -49,6 +49,12 @@ class ProjectController extends Controller
         return view('projects.assign-manager', compact('project', 'managers'));
     }
 
+    public function assignMember($id) {
+        $project = Project::findOrFail($id);
+        $users = User::all();
+        return view('projects.assign-member', compact('project', 'users'));
+    }
+
     public function storeAssignManager(Request $request, $id) {
         $project = Project::findOrFail($id);
         $project->manager_id = $request['manager_id'];
@@ -58,6 +64,15 @@ class ProjectController extends Controller
         ->leftJoin('users', 'users.id', '=', 'projects_users.user_id')
         ->get();
         return view('projects.show', compact('project', 'manager', 'members'));
+    }
+
+    public function storeAssignMember(Request $request, $id) {
+        $selected_users = $request->input('selected');
+        foreach($selected_users as $user){
+            $data = array('project_id' =>$id, 'user_id' => $user);
+            ProjectsUsers::create($data);
+        }
+        return redirect('/projects/'.$id)->with('success', 'Project has been updated');
     }
 
     public function update(Request $request, $id) {

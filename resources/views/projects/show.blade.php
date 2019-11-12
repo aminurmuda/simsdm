@@ -11,6 +11,7 @@
                 <div>
                     <!-- can edit if manager of this division or has admin role (role with id 1) -->
                     @if(Auth::user()->id == $project->manager_id || Auth::user()->role_id == 1)            
+                    <a href="/projects/{{$project->id}}/assign-member" class="button is-link">Tambah Anggota Proyek</a>
                     <a href="{{ route('projects.edit',$project->id)}}" class="button is-primary">Edit</a>
                     @endif
                     @if(!$project->manager_id && Auth::user()->role_id == 1)
