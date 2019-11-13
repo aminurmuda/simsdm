@@ -38,4 +38,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/projects/{id}/store-assign-member', 'ProjectController@storeAssignMember');
     Route::resource('/divisions', 'DivisionController');
     Route::resource('/departments', 'DepartmentController');
+    Route::get('/users/{id}/add-skill', 'UserController@addSkill');
+    Route::post('/users/{id}/store-skill', 'UserController@storeSkill');
 });

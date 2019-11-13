@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Skill;
+use App\SkillsUsers;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -22,7 +24,8 @@ class UserController extends Controller
 
     public function show($id) {
         $user = User::find($id);
-        return view('users.show', compact('user'));
+        $user_skills = SkillsUsers::with('skill')->get();
+        return view('users.show', compact('user','user_skills'));
     }
 
     public function edit($id) {
@@ -49,5 +52,19 @@ class UserController extends Controller
         $user->delete();
 
         return redirect('/users')->with('success', 'User has been deleted successfully');
+    }
+
+    public function addSkill($id) {
+        $user = User::findOrFail($id);
+        $skills = Skill::all();
+        return view('users.add-skill', compact('user', 'skills'));
+    }
+
+    public function storeSkill(Request $request, $id) {
+        $skill_id = $request['skill_id'];
+        $level = $request['level'];
+        $data = array('user_id' =>$id, 'skill_id' => $skill_id, 'level' => $level);
+        SkillsUsers::create($data);
+        return redirect('/users/'.$id)->with('success', 'User has been deleted successfully');
     }
 }
