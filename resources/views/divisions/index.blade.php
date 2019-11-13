@@ -14,14 +14,14 @@
             <div class="columns is-hcentered">
                 <div class="column is-2 has-text-weight-bold">Nama</div>        
                 <div class="column is-3 has-text-weight-bold">Description</div>
-                <div class="column is-3 has-text-weight-bold">Manager ID</div>
+                <div class="column is-3 has-text-weight-bold">Manager</div>
                 <div class="column is-4 has-text-weight-bold">Aksi</div>  
             </div>
             @foreach($divisions as $division)
             <div class="columns is-vcentered">
                 <div class="column is-2">{{$division->name}}</div>        
                 <div class="column is-3">{{$division->description}}</div>
-                <div class="column is-3">{{$division->manager_id}}</div>
+                <div class="column is-3">{{$division->manager->name}}</div>
                 <div class="column is-4 is-flex">
                     <a href="/divisions/{{$division->id}}" class="mx-0-25 button is-link">Lihat</a>
                     <a href="{{ route('divisions.edit',$division->id)}}" class="mx-0-25 button is-success">Edit</a>

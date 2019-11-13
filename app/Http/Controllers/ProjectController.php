@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     public function index() {
-        $projects = Project::all();
+        $projects = Project::with('manager')->get();
         return view('projects.index', compact('projects'));
     }
     
@@ -31,11 +31,10 @@ class ProjectController extends Controller
 
     public function show($id) {
         $project = Project::findOrFail($id);
-        $manager = User::find($project->manager_id);
         $members = ProjectsUsers::select('users.id', 'users.name', 'users.email')->where('project_id', $project->id)
         ->leftJoin('users', 'users.id', '=', 'projects_users.user_id')
         ->get();
-        return view('projects.show', compact('project', 'manager', 'members'));
+        return view('projects.show', compact('project', 'members'));
     }
 
     public function edit($id) {

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class DepartmentController extends Controller
 {
     public function index() {
-        $departments = Department::all();
+        $departments = Department::with('manager')->get();
         return view('departments.index', compact('departments'));
     }
     
@@ -33,9 +33,7 @@ class DepartmentController extends Controller
 
     public function show($id) {
         $department = Department::findOrFail($id);
-        $division = Division::findOrFail($department->division_id);
-        $manager = User::findOrFail($department->manager_id);
-        return view('departments.show', compact('department', 'manager', 'division'));
+        return view('departments.show', compact('department'));
     }
 
     public function edit($id) {

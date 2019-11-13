@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class DivisionController extends Controller
 {
     public function index() {
-        $divisions = Division::all();
+        $divisions = Division::with('manager')->get();
         return view('divisions.index', compact('divisions'));
     }
     
@@ -30,8 +30,7 @@ class DivisionController extends Controller
 
     public function show($id) {
         $division = Division::findOrFail($id);
-        $manager = User::findOrFail($division->manager_id);
-        return view('divisions.show', compact('division', 'manager'));
+        return view('divisions.show', compact('division'));
     }
 
     public function edit($id) {

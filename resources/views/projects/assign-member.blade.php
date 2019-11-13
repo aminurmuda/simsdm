@@ -24,30 +24,25 @@
                 <input style="display:none;"type="text" class="input" name="start_date" value="{{ $project->start_date }}"/>
                 <input style="display:none;"type="text" class="input" name="end_date" value="{{ $project->end_date }}"/>
                 
-                
-                <!-- <div id="app">
-                    <add-project-member></add-project-member>
-                </div> -->
-                <table class="table">
-                    <tr>
-                        <th></th>
-                        <th>Nama</th>
-                        <th>Departemen</th>
-                        <th>Aksi</th>
-                    </tr>
-                    @foreach($users as $user)
-                    <tr>
-                        <td>
-                            <label class="checkbox">
-                                <input type="checkbox" value="{{$user->id}}" name="selected[]"> Remember me
-                            </label>
-                        </td>
-                        <td>{{$user->name}}</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    @endforeach
-                </table>
+                <div class="columns">
+                    <div class="column is-1">
+                    </div>
+                    <div class="column has-text-weight-bold">Nama</div>
+                    <div class="column">Departemen</div>
+                    <div class="column">Aksi</div>
+                </div>
+                @foreach($users as $user)
+                <div class="columns">
+                    <div class="column is-1 is-flex justify-content-center align-items-center">
+                        <label style="width:100%;height:100%;"class="checkbox is-flex justify-content-center align-items-center">
+                            <input type="checkbox" value="{{$user->id}}" name="selected[]">
+                        </label>
+                    </div>
+                    <div class="column">{{$user->name}}</div>
+                    <div class="column"></div>
+                    <div class="column"></div>
+                </div>
+                @endforeach
                 <button type="submit" class="button is-primary">Simpan</button>
             </form>
         </div>

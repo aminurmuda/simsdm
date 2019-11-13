@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function show($id) {
         $user = User::find($id);
-        $user_skills = SkillsUsers::with('skill')->get();
+        $user_skills = SkillsUsers::where('user_id', '=', $id)->with('skill')->get();
         return view('users.show', compact('user','user_skills'));
     }
 

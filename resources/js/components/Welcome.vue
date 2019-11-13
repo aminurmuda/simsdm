@@ -2,7 +2,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to {{name}}<i class="material-icons">star</i>
+                    Welcome to Vue.js on Laravel
                 </div>
                 <div class="links">
                     <a href="https://laravel.com/docs">View Laravel Docs</a>
@@ -13,14 +13,7 @@
         </div>
     </template>
     <script>
-        export default {
-            props: {
-                name: {
-                    type: String,
-                    required: false
-                }
-            }
-        }
+        export default {}
     </script>
     <style scoped>
         html, body {

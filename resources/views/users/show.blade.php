@@ -16,7 +16,7 @@
         </div>
         <div class="box">
             <!-- can edit if their own profile or has admin role (role with id 1) -->
-            <div class="columns mt-1">
+            <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Nama</div>
                 <div class="column">{{$user->name}}</div>        
             </div>

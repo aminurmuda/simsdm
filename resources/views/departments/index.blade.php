@@ -13,17 +13,17 @@
         <div class="box mt-1">
             <div class="columns is-hcentered">
                 <div class="column is-2 has-text-weight-bold">Nama</div>        
-                <div class="column is-4 has-text-weight-bold">Description</div>
-                <div class="column is-1 has-text-weight-bold">Division</div>
+                <div class="column is-3 has-text-weight-bold">Description</div>
+                <div class="column is-2 has-text-weight-bold">Division</div>
                 <div class="column is-2 has-text-weight-bold">Manager</div>
                 <div class="column is-3 has-text-weight-bold">Aksi</div>  
             </div>
             @foreach($departments as $department)
             <div class="columns is-vcentered">
                 <div class="column is-2">{{$department->name}}</div>        
-                <div class="column is-4">{{$department->description}}</div>
-                <div class="column is-1">{{$department->division_id}}</div>
-                <div class="column is-2">{{$department->manager_id}}</div>
+                <div class="column is-3">{{$department->description}}</div>
+                <div class="column is-2">{{$department->division->name}}</div>
+                <div class="column is-2">{{$department->manager->name}}</div>
                 <div class="column is-3 is-flex">
                     <a href="/departments/{{$department->id}}" class="mx-0-25 button is-link">Lihat</a>
                     <a href="{{ route('departments.edit',$department->id)}}" class="mx-0-25 button is-success">Edit</a>

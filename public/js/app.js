@@ -1885,14 +1885,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    name: {
-      type: String,
-      required: false
-    }
-  }
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -37894,33 +37887,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex-center position-ref full-height" }, [
-    _c("div", { staticClass: "content" }, [
-      _c("div", { staticClass: "title m-b-md" }, [
-        _vm._v("\n            Welcome to " + _vm._s(_vm.name)),
-        _c("i", { staticClass: "material-icons" }, [_vm._v("star")])
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
-    ])
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "links" }, [
-      _c("a", { attrs: { href: "https://laravel.com/docs" } }, [
-        _vm._v("View Laravel Docs")
-      ]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "https://vuejs.org/v2/guide/" } }, [
-        _vm._v("View Vue Docs")
-      ]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "https://laracasts.com" } }, [
-        _vm._v("Watch Videos")
+    return _c("div", { staticClass: "flex-center position-ref full-height" }, [
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "title m-b-md" }, [
+          _vm._v("\n            Welcome to Vue.js on Laravel\n        ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "links" }, [
+          _c("a", { attrs: { href: "https://laravel.com/docs" } }, [
+            _vm._v("View Laravel Docs")
+          ]),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "https://vuejs.org/v2/guide/" } }, [
+            _vm._v("View Vue Docs")
+          ]),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "https://laracasts.com" } }, [
+            _vm._v("Watch Videos")
+          ])
+        ])
       ])
     ])
   }
