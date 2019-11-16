@@ -13,7 +13,7 @@
                 <a href="{{ route('projects.edit',$project->id)}}" class="button is-primary">Edit</a>
                 <a href="/projects/{{$project->id}}/assign-member" class="button is-info">Tambah Anggota Proyek</a>
                 @endif
-                @if(!$project->manager_id && Auth::user()->role_id == 1)
+                @if(Auth::user()->role_id == 1)
                 <a href="/projects/{{$project->id}}/assign-manager" class="button is-link">Assign Project Manager</a>
                 @endif
             </div>
@@ -28,11 +28,7 @@
                 <div class="column">{{$project->description}}</div>        
             </div>
             <div class="columns">
-                <div class="column is-2 has-text-weight-bold">Customer</div>
-                <div class="column">{{$project->customer->company_name}}</div>        
-            </div>
-            <div class="columns">
-                <div class="column is-2 has-text-weight-bold">Alamat Proyek</div>
+                <div class="column is-2 has-text-weight-bold">Lokasi Proyek</div>
                 <div class="column">{{$project->address}}</div>        
             </div>
             <div class="columns">
@@ -44,16 +40,28 @@
                 <div class="column">{{ \Carbon\Carbon::parse($project->end_date)->format('d F Y')}}</div>        
             </div>
             <div class="columns">
-                <div class="column is-2 has-text-weight-bold">Manager</div>
+                <div class="column is-2 has-text-weight-bold">Manager Proyek</div>
                 @if($project->manager_id)
                 <div class="column">{{$project->manager->name}}</div>        
                 @else
-                <div class="column has-text-grey">Manager belum diassign</div>        
+                <div class="column has-text-grey-lighter">Manager belum diassign</div>        
                 @endif
+            </div>
+            <div class="columns">
+                <div class="column is-2 has-text-weight-bold">Customer</div>
+                <div class="column">{{$project->customer->company_name}}</div>        
             </div>
             <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Departemen</div>
                 <div class="column">{{$project->department->name}}</div>  
+            </div>
+            <div class="columns">
+                <div class="column is-2 has-text-weight-bold">Divisi</div>
+                <div class="column">{{$project->department->division->name}}</div>  
+            </div>
+            <div class="columns">
+                <div class="column is-2 has-text-weight-bold">Status</div>
+                <div class="column">{{$project->status->name}}</div>  
             </div>
         </div>
         

@@ -23,12 +23,12 @@
                 <div class="column is-3">{{$division->description}}</div>
                 <div class="column is-3">{{$division->manager->name}}</div>
                 <div class="column is-4 is-flex">
-                    <a href="/divisions/{{$division->id}}" class="mx-0-25 button is-link">Lihat</a>
-                    <a href="{{ route('divisions.edit',$division->id)}}" class="mx-0-25 button is-success">Edit</a>
+                    <a href="/divisions/{{$division->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
+                    <a href="{{ route('divisions.edit',$division->id)}}" class="mx-0-25 button is-small is-success">Edit</a>
                     <form action="{{ route('divisions.destroy', $division->id)}}" method="post" class="mx-0-25">
                     @csrf
                     @method('DELETE')
-                    <button class="button is-danger" type="submit">Hapus</button>
+                    <button class="button is-small is-danger" type="submit">Hapus</button>
                     </form>
                 </div>  
             </div>

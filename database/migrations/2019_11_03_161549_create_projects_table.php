@@ -26,7 +26,7 @@ class CreateProjectsTable extends Migration
 
             $table->foreign('manager_id')->references('id')->on('users');
             $table->foreign('department_id')->references('id')->on('departments');
-            $table->foreign('status_id')->references('id')->on('project_status');
+            $table->foreign('status_id')->references('id')->on('project_statuses');
 
         });
     }

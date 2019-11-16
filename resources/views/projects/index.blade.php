@@ -13,32 +13,32 @@
         <div class="box mt-1">
             <div class="columns is-hcentered">
                 <div class="column is-2 has-text-weight-bold">Nama</div>        
-                <div class="column is-3 has-text-weight-bold">Description</div>
-                <div class="column is-1 has-text-weight-bold">Manager</div>
+                <div class="column is-2 has-text-weight-bold">Description</div>
+                <div class="column is-2 has-text-weight-bold">Manager</div>
                 <div class="column is-2 has-text-weight-bold">Customer</div>
-                <div class="column is-1 has-text-weight-bold">Deadline</div>
-                <div class="column is-3 has-text-weight-bold">Aksi</div>  
+                <div class="column is-2 has-text-weight-bold">Deadline</div>
+                <div class="column is-2 has-text-weight-bold">Aksi</div>  
             </div>
             @foreach($projects as $project)
             <div class="columns is-vcentered">
                 <div class="column is-2">{{$project->name}}</div>        
-                <div class="column is-3">{{$project->description}}</div>
-                <div class="column is-1">
+                <div class="column is-2">{{$project->description}}</div>
+                <div class="column is-2">
                 @if($project->manager)
                     {{$project->manager->name}}
                 @else
-                    <p class="has-text-grey-light">Manager belum diassign</p>
+                    <p class="has-text-grey-lighter">Manager belum diassign</p>
                 @endif
                 </div>
                 <div class="column is-2">{{$project->customer->company_name}}</div>
-                <div class="column is-1">{{ \Carbon\Carbon::parse($project->end_date)->format('d M Y')}}</div>
-                <div class="column is-3 is-flex">
-                    <a href="/projects/{{$project->id}}" class="mx-0-25 button is-link">Lihat</a>
-                    <a href="{{ route('projects.edit',$project->id)}}" class="mx-0-25 button is-success">Edit</a>
+                <div class="column is-2">{{ \Carbon\Carbon::parse($project->end_date)->format('d M Y')}}</div>
+                <div class="column is-2 is-flex">
+                    <a href="/projects/{{$project->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
+                    <a href="{{ route('projects.edit',$project->id)}}" class="mx-0-25 button is-small is-success">Edit</a>
                     <form action="{{ route('projects.destroy', $project->id)}}" method="post" class="mx-0-25">
                     @csrf
                     @method('DELETE')
-                    <button class="button is-danger" type="submit">Hapus</button>
+                    <button class="button is-small is-danger" type="submit">Hapus</button>
                     </form>
                 </div>  
             </div>

@@ -13,7 +13,7 @@ class CreateProjectStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_status', function (Blueprint $table) {
+        Schema::create('project_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
         });
@@ -26,6 +26,6 @@ class CreateProjectStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_status');
+        Schema::dropIfExists('project_statuses');
     }
 }

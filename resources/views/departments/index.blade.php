@@ -25,12 +25,12 @@
                 <div class="column is-2">{{$department->division->name}}</div>
                 <div class="column is-2">{{$department->manager->name}}</div>
                 <div class="column is-3 is-flex">
-                    <a href="/departments/{{$department->id}}" class="mx-0-25 button is-link">Lihat</a>
-                    <a href="{{ route('departments.edit',$department->id)}}" class="mx-0-25 button is-success">Edit</a>
+                    <a href="/departments/{{$department->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
+                    <a href="{{ route('departments.edit',$department->id)}}" class="mx-0-25 button is-small is-success">Edit</a>
                     <form action="{{ route('departments.destroy', $department->id)}}" method="post" class="mx-0-25">
                     @csrf
                     @method('DELETE')
-                    <button class="button is-danger" type="submit">Hapus</button>
+                    <button class="button is-small is-danger" type="submit">Hapus</button>
                     </form>
                 </div>  
             </div>

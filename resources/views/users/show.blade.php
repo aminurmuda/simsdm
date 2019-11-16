@@ -25,8 +25,20 @@
                 <div class="column">{{$user->email}}</div>        
             </div>
             <div class="columns">
-                <div class="column is-2 has-text-weight-bold">Tempat & Tanggal Lahir</div>
-                <div class="column">{{$user->birth_place}}, {{ \Carbon\Carbon::parse($user->birth_date)->format('d F Y')}}</div>        
+                <div class="column is-2 has-text-weight-bold">Tempat Lahir</div>
+                @if($user->birth_place)
+                    <div class="column">{{$user->birth_place}}</div>
+                @else
+                    <div class="column has-text-grey-lighter">Tempat lahir belum diisi</div>
+                @endif
+            </div>
+            <div class="columns">
+                <div class="column is-2 has-text-weight-bold">Tanggal Lahir</div>
+                @if($user->birth_date)
+                    <div class="column">{{ \Carbon\Carbon::parse($user->birth_date)->format('d F Y')}}</div>
+                @else
+                <div class="column has-text-grey-lighter">Tanggal lahir belum diisi</div>
+                @endif
             </div>
             <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Jenis Kelamin</div>
@@ -40,7 +52,19 @@
             </div>
             <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Alamat</div>
-                <div class="column">{{$user->address}}</div>        
+                @if($user->address)    
+                <div class="column">{{$user->address}}</div>   
+                @else
+                <div class="column has-text-grey-lighter">Alamat belum diisi</div>        
+                @endif     
+            </div>
+            <div class="columns">
+                <div class="column is-2 has-text-weight-bold">Departemen</div>
+                <div class="column">{{$user->department->name}}</div>        
+            </div>
+            <div class="columns">
+                <div class="column is-2 has-text-weight-bold">Divisi</div>
+                <div class="column">{{$user->department->division->name}}</div>        
             </div>
         </div>
 
@@ -58,7 +82,7 @@
                 </div>
                 @endforeach
             @else
-                <p class="mt-0-5 has-text-grey-light">
+                <p class="mt-0-5 has-text-grey-lighter">
                     Anda belum menambahkan skill
                 </p>
             @endif

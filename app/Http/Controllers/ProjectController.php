@@ -6,6 +6,7 @@ use App\Customer;
 use App\Project;
 use App\ProjectsUsers;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -21,14 +22,20 @@ class ProjectController extends Controller
     }
 
     public function store(Request $request) {
+        $department_id = Auth::user()->department->id;
+        $status_id = 1;
+        $request->request->add(['department_id' => $department_id, 'status_id' => $status_id]);
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required|max:255',
             'customer_id' => 'required',
+            'department_id' => 'required',
+            'status_id' => 'required',
             'address' => 'required|max:255',
             'start_date' => 'required',
             'end_date' => 'required',
         ]);
+        // dd($validatedData);
         $project = Project::create($validatedData);
         return redirect('/projects')->with('success', 'Project has been added');
     }

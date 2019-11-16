@@ -30,7 +30,7 @@
                             <select name="manager_id" id="">
                                 <option value="" disabled=true selected>-- Pilih Manager --</option>
                                 @foreach($managers as $manager)
-                                <option value="{{$manager->id}}">{{$manager->name}}</option>
+                                <option value="{{$manager->id}}" {{ $project->manager_id == $manager->id ? 'selected' : '' }}>{{$manager->name}}</option>
                                 @endforeach
                             </select>
                         </div>
