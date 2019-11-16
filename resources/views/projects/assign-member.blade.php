@@ -21,6 +21,8 @@
                 @csrf
                 <input style="display:none;"type="text" class="input" name="name" value="{{ $project->name }}"/>
                 <input style="display:none;"type="text" class="input" name="description" value="{{ $project->description }}"/>
+                <input style="display:none;"type="text" class="input" name="customer_id" value="{{ $project->customer_id }}"/>
+                <input style="display:none;"type="text" class="input" name="address" value="{{ $project->address }}"/>
                 <input style="display:none;"type="text" class="input" name="start_date" value="{{ $project->start_date }}"/>
                 <input style="display:none;"type="text" class="input" name="end_date" value="{{ $project->end_date }}"/>
                 

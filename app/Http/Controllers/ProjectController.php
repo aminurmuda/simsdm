@@ -25,6 +25,7 @@ class ProjectController extends Controller
             'name' => 'required|max:255',
             'description' => 'required|max:255',
             'customer_id' => 'required',
+            'address' => 'required|max:255',
             'start_date' => 'required',
             'end_date' => 'required',
         ]);
@@ -83,6 +84,7 @@ class ProjectController extends Controller
             'name' => 'required|max:255',
             'description' => 'required|max:255',
             'customer_id' => 'required',
+            'address' => 'required|max:255',
             'start_date' => 'required',
             'end_date' => 'required',
         ]);

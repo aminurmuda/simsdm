@@ -32,6 +32,11 @@
                 </div>
                 <div class="field">
                     <div class="control">
+                        <textarea type="text" class="textarea" name="address" placeholder="Alamat Proyek"></textarea>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
                         <div class="columns">
                             <div class="column is-6">
                                 <input type="date" class="input" name="start_date">

@@ -32,6 +32,10 @@
                 <div class="column">{{$project->customer->company_name}}</div>        
             </div>
             <div class="columns">
+                <div class="column is-2 has-text-weight-bold">Alamat Proyek</div>
+                <div class="column">{{$project->address}}</div>        
+            </div>
+            <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Tanggal Mulai</div>
                 <div class="column">{{ \Carbon\Carbon::parse($project->start_date)->format('d F Y')}}</div>        
             </div>
@@ -46,6 +50,10 @@
                 @else
                 <div class="column has-text-grey">Manager belum diassign</div>        
                 @endif
+            </div>
+            <div class="columns">
+                <div class="column is-2 has-text-weight-bold">Departemen</div>
+                <div class="column">{{$project->department->name}}</div>  
             </div>
         </div>
         
