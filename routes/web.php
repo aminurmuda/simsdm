@@ -32,6 +32,7 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::middleware('auth')->group(function () {
     Route::resource('/users', 'UserController');
     Route::resource('/projects', 'ProjectController');
+    Route::resource('/customers', 'CustomerController');
     Route::get('/projects/{id}/assign-manager', 'ProjectController@assignManager');
     Route::get('/projects/{id}/assign-member', 'ProjectController@assignMember');
     Route::put('/projects/{id}/store-assign-manager', 'ProjectController@storeAssignManager');

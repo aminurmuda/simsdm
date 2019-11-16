@@ -28,6 +28,10 @@
                 <div class="column">{{$project->description}}</div>        
             </div>
             <div class="columns">
+                <div class="column is-2 has-text-weight-bold">Customer</div>
+                <div class="column">{{$project->customer->company_name}}</div>        
+            </div>
+            <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Tanggal Mulai</div>
                 <div class="column">{{ \Carbon\Carbon::parse($project->start_date)->format('d F Y')}}</div>        
             </div>

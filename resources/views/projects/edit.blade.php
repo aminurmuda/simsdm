@@ -31,6 +31,18 @@
                 </div>
                 <div class="field">
                     <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="customer_id" id="">
+                                <option value="" disabled=true>-- Pilih Customer --</option>
+                                @foreach($customers as $customer)
+                                <option value="{{$customer->id}}" {{ $project->customer_id == $customer->id ? 'selected' : '' }}>{{$customer->company_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
                         <div class="columns">
                             <div class="column is-6">
                                 <input type="date" class="input" name="start_date" value="{{ $project->start_date }}" />

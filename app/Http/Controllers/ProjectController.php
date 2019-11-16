@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Project;
 use App\ProjectsUsers;
 use App\User;
@@ -15,13 +16,15 @@ class ProjectController extends Controller
     }
     
     public function create() {
-        return view('projects.create');
+        $customers = Customer::all();
+        return view('projects.create', compact('customers'));
     }
 
     public function store(Request $request) {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required|max:255',
+            'customer_id' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
         ]);
@@ -39,7 +42,8 @@ class ProjectController extends Controller
 
     public function edit($id) {
         $project = Project::findOrFail($id);
-        return view('projects.edit', compact('project'));
+        $customers = Customer::all();
+        return view('projects.edit', compact('project', 'customers'));
     }
     
     public function assignManager($id) {
@@ -78,6 +82,7 @@ class ProjectController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required|max:255',
+            'customer_id' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
         ]);

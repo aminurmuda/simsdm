@@ -21,6 +21,7 @@
                 <a href="/divisions" class="px-2 navbar-item">Divisi</a>
                 <a href="/departments" class="px-2 navbar-item">Departemen</a>
                 <a href="/projects" class="px-2 navbar-item">Proyek</a>
+                <a href="/customers" class="px-2 navbar-item">Customer</a>
                 @endguest
             </div>
             
