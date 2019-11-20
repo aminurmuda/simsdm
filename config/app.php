@@ -67,8 +67,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
-
+    'timezone' => 'Asia/Jakarta',
+    
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -79,9 +79,9 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-
-    'locale' => 'en',
-
+    
+    'locale' => 'id',
+    
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -92,9 +92,9 @@ return [
     | the language folders that are provided through your application.
     |
     */
-
-    'fallback_locale' => 'en',
-
+    
+    'faker_locale' => 'id_ID',
+    
     /*
     |--------------------------------------------------------------------------
     | Faker Locale
