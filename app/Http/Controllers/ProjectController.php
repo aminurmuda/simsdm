@@ -43,10 +43,10 @@ class ProjectController extends Controller
 
     public function show($id) {
         $project = Project::findOrFail($id);
-        $project_members = RequestEmployee::where('project_id', '=', $id)
-            ->where('status_id', '=', '2') // ketika request sudah diterima
-            ->with('user')->get();
-        // $members = ProjectsUsers::with('user')->get();
+        // $project_members = RequestEmployee::where('project_id', '=', $id)
+        //     ->where('status_id', '=', '2') // ketika request sudah diterima
+        //     ->with('user')->get();
+        $project_members = ProjectsUsers::with('user')->get();
         return view('projects.show', compact('project', 'project_members'));
     }
 

@@ -26,18 +26,29 @@ class RequestEmployeeController extends Controller
         return view('requests.create', compact('users','projects','types'));
     }
 
-    public function approve(Request $request, $id) {
+    public function approve_by_manager(Request $request, $id) {
         RequestEmployee::whereId($id)->update(['status_id' => 2]);
-        $project_id = $request['project_id'];
-        $user_id = $request['user_id'];
-        $data = array('project_id' =>$project_id, 'user_id' => $user_id);
-        ProjectsUsers::create($data);
-        return redirect('/request_employees')->with('success', 'Request has been approved');
+        return redirect('/request_employees')->with('success', 'Request has been approved by manager');
     }
     
-    public function reject($id) {
+    public function reject_by_manager($id) {
         RequestEmployee::whereId($id)->update(['status_id' => 3]);
-        return redirect('/request_employees')->with('success', 'Request has been rejected');
+        return redirect('/request_employees')->with('success', 'Request has been rejected by manager');
+    }
+
+    public function approve_by_employee(Request $request, $id) {
+        RequestEmployee::whereId($id)->update(['status_id' => 4]);
+        $request_employee = RequestEmployee::find($id);
+        $project_id = $request['project_id'];
+        $user_id = $request['user_id'];
+        $data = array('project_id' =>$project_id, 'user_id' => $user_id, 'role' => $request_employee->role);
+        ProjectsUsers::create($data);
+        return redirect('/request_employees')->with('success', 'Request has been approved by employee');
+    }
+    
+    public function reject_by_employee($id) {
+        RequestEmployee::whereId($id)->update(['status_id' => 5]);
+        return redirect('/request_employees')->with('success', 'Request has been rejected by employee');
     }
 
     public function store(Request $request)

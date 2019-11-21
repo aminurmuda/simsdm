@@ -31,8 +31,10 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::resource('/request_employees', 'RequestEmployeeController')->only(['index', 'create', 'destroy', 'store']);
-    Route::put('/request_employees/{id}/approve', ['as' => 'request_approve', 'uses' => 'RequestEmployeeController@approve']);
-    Route::put('/request_employees/{id}/reject', ['as' => 'request_reject', 'uses' => 'RequestEmployeeController@reject']);
+    Route::put('/request_employees/{id}/approve_by_manager', ['as' => 'request_approve_by_manager', 'uses' => 'RequestEmployeeController@approve_by_manager']);
+    Route::put('/request_employees/{id}/reject_by_manager', ['as' => 'request_reject_by_manager', 'uses' => 'RequestEmployeeController@reject_by_manager']);
+    Route::put('/request_employees/{id}/approve_by_employee', ['as' => 'request_approve_by_employee', 'uses' => 'RequestEmployeeController@approve_by_employee']);
+    Route::put('/request_employees/{id}/reject_by_employee', ['as' => 'request_reject_by_employee', 'uses' => 'RequestEmployeeController@reject_by_employee']);
 
 
     Route::resource('/users', 'UserController');
