@@ -23,6 +23,7 @@
                 <a href="/projects" class="px-2 navbar-item">Proyek</a>
                 <a href="/customers" class="px-2 navbar-item">Customer</a>
                 <a href="/attendance_reports" class="px-2 navbar-item">Kehadiran</a>
+                <a href="/request_employees" class="px-2 navbar-item">Permintaan</a>
                 @endguest
             </div>
             

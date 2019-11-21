@@ -65,20 +65,28 @@
             </div>
         </div>
         
-        @if(count($members) > 0)
+        @if(count($project_members) > 0)
         <div class="box">
             <div class="columns">
             <div class="column is-2 has-text-weight-bold">Nama Karyawan</div>
-            <div class="column is-2 has-text-weight-bold">Email</div>
+            <div class="column is-2 has-text-weight-bold">Divisi</div>
+            <div class="column is-2 has-text-weight-bold">Departemen</div>
+            <div class="column is-2 has-text-weight-bold">Role</div>
             </div>
 
-            @foreach($members as $member)
+            @foreach($project_members as $member)
             <div class="columns">
-                <div class="column is-2">{{$member->name}}</div>
-                <div class="column is-2">{{$member->email}}</div>
+                <div class="column is-2">{{$member->user->name}}</div>
+                <div class="column is-2">{{$member->user->department->division->name}}</div>
+                <div class="column is-2">{{$member->user->department->name}}</div>
+                <div class="column is-2">{{$member->role}}</div>
             </div>
             @endforeach
         </div>
+        @else
+            <div class="box">
+                Belum ada member proyek
+            </div>
         @endif
     </div>
     
