@@ -40,7 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/users', 'UserController');
     Route::get('/users/{id}/add-skill', 'UserController@addSkill');
     Route::post('/users/{id}/store-skill', 'UserController@storeSkill');
-    
+    Route::get('/users/{id}/change-role', 'UserController@changeRole');
+    Route::put('/users/{id}/store_change_role', ['as' => 'store_change_role', 'uses' => 'UserController@storeChangeRole']);
+
 
 
     Route::resource('/attendance_reports', 'AttendanceReportController')->only(['index', 'create', 'destroy', 'store']);
@@ -48,12 +50,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/attendance_reports/{id}/reject', ['as' => 'attendance_reject', 'uses' => 'AttendanceReportController@reject']);
     Route::post('/attendance_reports/clock_in', ['as' => 'clock_in', 'uses' => 'AttendanceReportController@clockIn']);
     Route::post('/attendance_reports/clock_out', ['as' => 'clock_out', 'uses' => 'AttendanceReportController@clockOut']);
-
     
+
 
     Route::resource('/customers', 'CustomerController');
     
-    
+
 
     Route::resource('/projects', 'ProjectController');
     Route::get('/projects/{id}/assign-manager', 'ProjectController@assignManager');

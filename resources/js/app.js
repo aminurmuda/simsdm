@@ -21,6 +21,9 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('welcome', require('./components/Welcome.vue').default);
+Vue.component('modal', require('./components/Modal.vue').default);
+Vue.component('change-role', require('./components/ChangeRole.vue').default);
+Vue.component('navbar', require('./components/Navbar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,6 +31,22 @@ Vue.component('welcome', require('./components/Welcome.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// import Event from './event'
+
 const app = new Vue({
     el: '#app',
+    data: {
+
+    },
+    methods: {
+        // showModal() {
+        //     console.log('showModal')
+        //     Event.$emit('show-modal', name)
+        // },
+        
+        // hideModal() {
+        //     Event.$emit('hide-modal', name)
+        // }
+    }
 });
+

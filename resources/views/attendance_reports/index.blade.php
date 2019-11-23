@@ -5,7 +5,7 @@
 
     <div class="container">
         <!-- can create if has admin role (role with id 1) -->
-        @if(Auth::user()->role_id == 1)
+        @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
         <div class="is-flex justify-content-end">
             <a href="/attendance_reports/create" class="button is-success">Buat</a>
         </div>
@@ -31,11 +31,13 @@
                 <div class="column is-1">{{ lembur($attendance_report->clock_in, $attendance_report->clock_out) }}</div>
                 <div class="column is-1">{{ $attendance_report->status->name }}</div>
                 <div class="column is-2 is-flex">
-                    <form action="{{ route('attendance_reports.destroy', $attendance_report->id)}}" method="post" class="mx-0-25">
-                    @csrf
-                    @method('DELETE')
-                    <button class="button is-small is-danger" type="submit">Hapus</button>
-                    </form>
+                    @if(Auth::user()->role_id == '1' || Auth::user()->role_id == '2')
+                        <form action="{{ route('attendance_reports.destroy', $attendance_report->id)}}" method="post" class="mx-0-25">
+                            @csrf
+                            @method('DELETE')
+                            <button class="button is-small is-danger" type="submit">Hapus</button>
+                        </form>
+                    @endif
                     @if($attendance_report->status_id == 1)
                         <form action="{{ route('attendance_approve', $attendance_report->id)}}" method="post" class="mx-0-25">
                         @csrf
@@ -51,6 +53,11 @@
                 </div>  
             </div>
             @endforeach
+            <modal :name="'modal-info'">
+                <div class="box p-1" slot="main-content">
+                    haha
+                </div>
+            </modal>
         </div>
     </div>
     

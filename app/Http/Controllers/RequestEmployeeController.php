@@ -14,8 +14,17 @@ class RequestEmployeeController extends Controller
 {
     public function index()
     {
-        $requests = RequestEmployee::all();
-        return view('requests.index', compact('requests'));
+        if(Auth::user()->role_id == '1') { // for admin role
+            $requests = RequestEmployee::all();
+            return view('requests.index-admin', compact('requests'));
+        } else if(Auth::user()->role_id == '4') { // for department manager role 
+            $requests = RequestEmployee::where('requestor_id', '=', Auth::user()->id)->get();
+            return view('requests.index-department-manager', compact('requests'));
+        } else { //for employee role
+            $requests = RequestEmployee::where('requestee_id', '=', Auth::user()->id)->get();
+            return view('requests.index', compact('requests'));
+        }
+
     }
 
     public function create()

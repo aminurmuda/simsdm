@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRoleColumnToProjectsUsersTable extends Migration
+class AddColumnReasonToRequestEmployeesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddRoleColumnToProjectsUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('projects_users', function (Blueprint $table) {
-            $table->string('role')->after('user_id')->nullable();
+        Schema::table('request_employees', function (Blueprint $table) {
+            $table->string('reason')->after('status_id');
         });
     }
 
@@ -25,8 +25,8 @@ class AddRoleColumnToProjectsUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('projects_users', function (Blueprint $table) {
-            $table->dropColumn(['role']);
+        Schema::table('request_employees', function (Blueprint $table) {
+            $table->dropColumn(['reason']);
         });
     }
 }

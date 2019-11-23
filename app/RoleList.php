@@ -4,18 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProjectsUsers extends Model
+class RoleList extends Model
 {
-    //
     protected $fillable = [
-        'project_id', 'user_id', 'role'
+        'user_id', 'role_id'
     ];
 
     public function user() {
         return $this->belongsTo('App\User');
     }
 
-    public function project() {
-        return $this->belongsTo('App\Project');
+    public function role() {
+        return $this->belongsTo('App\Role');
     }
 }

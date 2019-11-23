@@ -12,7 +12,12 @@ use Illuminate\Http\Request;
 class AttendanceReportController extends Controller
 {
     public function index() {
-        $attendance_reports = AttendanceReport::all();
+        $attendance_reports = null;
+        if(Auth::user()->role_id == '1' || Auth::user()->role_id == '4') {
+            $attendance_reports = AttendanceReport::all();
+        } elseif(Auth::user()->role_id == '2') {
+            $attendance_reports = AttendanceReport::where('user_id', '=', Auth::user()->id)->get();
+        }
         return view('attendance_reports.index', compact('attendance_reports'));
     }
     

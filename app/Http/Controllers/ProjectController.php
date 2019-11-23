@@ -13,7 +13,12 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     public function index() {
-        $projects = Project::with('manager')->get();
+        $projects = null;
+        if(Auth::user()->role_id == '1') {
+            $projects = Project::with('manager')->get();
+        } else if(Auth::user()->role_id == '2') { // for employee role 
+            $projects = Project::with('users')->with('manager')->get();
+        }
         return view('projects.index', compact('projects'));
     }
     
@@ -64,7 +69,7 @@ class ProjectController extends Controller
 
     public function assignMember($id) {
         $project = Project::findOrFail($id);
-        $users = User::all();
+        $users = User::where('department_id', '=', $project->department_id)->get();
         return view('projects.assign-member', compact('project', 'users'));
     }
 

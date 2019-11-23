@@ -2,11 +2,10 @@
 
 namespace App\Providers;
 
-use Carbon\Carbon;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class ViewServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -25,8 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        config(['app.locale' => 'id']);
-        Carbon::setLocale('id');
-        date_default_timezone_set('Asia/Jakarta');
+        // Using class based composers...
+        View::composer('layouts.navbar', 'App\Http\View\Composers\NavbarComposer');
     }
 }

@@ -4,6 +4,9 @@
 @section('content')
 
     <div class="container">
+        <div class="is-flex justify-content-end">
+            <a href="/request_employees/create" class="button is-success">Buat Request Karyawan</a>
+        </div>
         <div class="box mt-1">
             <div class="columns is-hcentered">
                 <div class="column is-2 has-text-weight-bold">Nama Proyek</div>        
@@ -26,14 +29,20 @@
                 <div class="column is-1">{{ $request->status->name }}</div>       
                 <div class="column is-3 is-flex">
                     <a href="/projects/{{$request->project_id}}" class="mx-0-25 button is-small is-link">Lihat</a>
-                    @if($request->status_id == 2)
-                        <form action="{{ route('request_approve_by_employee', $request->id) }}" method="post" class="mx-0-25">
+                    @if(Auth::user()->role_id == 1)
+                        <form action="{{ route('request_employees.destroy', $request->id)}}" method="post" class="mx-0-25">
+                        @csrf
+                        @method('DELETE')
+                        <button class="button is-small is-danger" type="submit">Hapus</button>
+                        </form>
+                    @endif
+                    
+                    @if($request->status_id == 1)
+                        <form action="{{ route('request_approve_by_manager', $request->id) }}" method="post" class="mx-0-25">
                             @csrf @method('PUT')
-                            <input style="display:none;" type="text" name="project_id" value="{{$request->project->id}}">
-                            <input style="display:none;" type="text" name="user_id" value="{{Auth::user()->id}}">
                             <button class="button is-small is-success" type="submit">Approve</button>
                         </form>
-                        <form action="{{ route('request_reject_by_employee', $request->id)}}" method="post" class="mx-0-25">
+                        <form action="{{ route('request_reject_by_manager', $request->id)}}" method="post" class="mx-0-25">
                             @csrf @method('PUT')
                             <button class="button is-small is-danger" type="submit">Reject</button>
                         </form>

@@ -34,7 +34,7 @@
                 </div>
                 <div class="field">
                     <div class="control">
-                        <input type="number" name="level" class="input"/>
+                        <input type="number" name="level" class="input" placeholder="Level keahlian"/>
                     </div>
                 </div>
                 <button type="submit" class="button is-primary">Tambah</button>

@@ -25,7 +25,7 @@
                 <div class="column is-2">{{$user->email}}</div>
                 <div class="column is-3">
                 @foreach($user->skills as $skill)
-                <button class="button is-small is-info">
+                <button type="button" class="button is-small is-info">
                     {{$skill->skill->name}}
                 </button>
                 @endforeach

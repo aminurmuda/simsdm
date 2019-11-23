@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\RoleList;
 use App\Skill;
 use App\SkillsUsers;
 use Illuminate\Http\Request;
@@ -66,5 +67,21 @@ class UserController extends Controller
         $data = array('user_id' =>$id, 'skill_id' => $skill_id, 'level' => $level);
         SkillsUsers::create($data);
         return redirect('/users/'.$id)->with('success', 'User has been deleted successfully');
+    }
+
+    public function changeRole($id) {
+        $role_lists = RoleList::where('user_id', '=', $id)->get();
+        return view('users.change-role', compact('role_lists'));
+    }
+
+    public function storeChangeRole(Request $request, $id) {
+        $role_id = $request['role_id'];
+        try {
+            User::whereId($id)->update(['role_id' => $role_id]);
+            $user = User::find($id);
+            return response($user, 200);
+        } catch (Exception $exception){
+             return response($exception->getMessage(), $exception->getStatus());
+        }
     }
 }

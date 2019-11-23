@@ -22,9 +22,10 @@
     <link href="{{ asset('css/styling.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">        
+    <div id="app">
+    
         @include('layouts.navbar')
-        <main class="py-4">
+        <main class="py-5">
             @yield('content')
         </main>
     </div>

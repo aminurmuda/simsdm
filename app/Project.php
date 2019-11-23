@@ -30,4 +30,8 @@ class Project extends Model
     public function members() {
         return $this->hasMany('App\User');
     }
+
+    public function users() {
+        return $this->hasMany('App\ProjectsUsers');
+    }
 }
