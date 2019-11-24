@@ -32,12 +32,12 @@
                 <div class="column">{{$project->address}}</div>        
             </div>
             <div class="columns">
-                <div class="column is-2 has-text-weight-bold">Tanggal Mulai</div>
-                <div class="column">{{ \Carbon\Carbon::parse($project->start_date)->format('d F Y')}}</div>        
+                <div class="column is-2 has-text-weight-bold">Tanggal Mulai</div>      
+                <div class="column">{{ tanggal_full($project->start_date)}}</div>        
             </div>
             <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Tanggal Berakhir</div>
-                <div class="column">{{ \Carbon\Carbon::parse($project->end_date)->format('d F Y')}}</div>        
+                <div class="column">{{ tanggal_full($project->end_date)}}</div>        
             </div>
             <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Manager Proyek</div>

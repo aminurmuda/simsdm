@@ -14,7 +14,7 @@ class AddColumnReasonToRequestEmployeesTable extends Migration
     public function up()
     {
         Schema::table('request_employees', function (Blueprint $table) {
-            $table->string('reason')->after('status_id');
+            $table->string('reason')->after('status_id')->nullable();
         });
     }
 

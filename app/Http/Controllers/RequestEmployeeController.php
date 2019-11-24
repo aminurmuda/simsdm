@@ -35,7 +35,7 @@ class RequestEmployeeController extends Controller
         return view('requests.create', compact('users','projects','types'));
     }
 
-    public function approve_by_manager(Request $request, $id) {
+    public function approve_by_manager($id) {
         RequestEmployee::whereId($id)->update(['status_id' => 2]);
         return redirect('/request_employees')->with('success', 'Request has been approved by manager');
     }

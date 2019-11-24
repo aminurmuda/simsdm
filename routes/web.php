@@ -68,6 +68,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('/divisions', 'DivisionController');
     
 
+    Route::resource('/paid_leaves', 'PaidLeaveController', ['except' => ['update', 'edit']]);
+    Route::put('/request_employees/{id}/paid_leave_approve_by_manager', ['as' => 'paid_leave_approve_by_manager', 'uses' => 'PaidLeaveController@paid_leave_approve_by_manager']);
+    Route::put('/request_employees/{id}/paid_leave_reject_by_manager', ['as' => 'paid_leave_reject_by_manager', 'uses' => 'PaidLeaveController@paid_leave_reject_by_manager']);
+    
 
     Route::resource('/departments', 'DepartmentController');
     
