@@ -6,19 +6,20 @@
         @if(Auth::user())
         <h1 class="title">Welcome to SIMSDM, {{ Auth::user()->name }}</h1>
         @endif
-
-        <button class="button is-link" @click="showModal('haha')">
-            Buka
-        </button>
         
         <modal :modal-name="'haha'">
+            <template v-slot:trigger>
+                Open Modal Bro
+            </template>
             <template v-slot:header>
-                Haha
+                <h1>Here might be a page title</h1>
+            </template>
+            <template v-slot:content>
+                <p>A paragraph for the main content.</p>
+                <p>haha</p>
             </template>
             <template v-slot:footer>
-                <button type="button" class="button is-danger">
-                    Hapus
-                </button>
+                <p>Here's some contact info</p>
             </template>
         <modal/>
     </div>

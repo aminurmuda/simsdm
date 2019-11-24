@@ -69,7 +69,8 @@ class ProjectController extends Controller
 
     public function assignMember($id) {
         $project = Project::findOrFail($id);
-        $users = User::where('department_id', '=', $project->department_id)->get();
+        $users = User::with(['skills', 'skills.skill'])
+        ->where('department_id', '=', $project->department_id)->get();
         return view('projects.assign-member', compact('project', 'users'));
     }
 
@@ -85,12 +86,16 @@ class ProjectController extends Controller
     }
 
     public function storeAssignMember(Request $request, $id) {
-        $selected_users = $request->input('selected');
-        foreach($selected_users as $user){
-            $data = array('project_id' =>$id, 'user_id' => $user);
-            ProjectsUsers::create($data);
+        $selected_members = $request->input('selected_members');
+        try {
+            foreach($selected_members as $members){
+                ProjectsUsers::updateOrCreate($members);
+            }
+            return response('success', 200);
+        } catch (Exception $exception){
+             return response($exception->getMessage(), $exception->getStatus());
         }
-        return redirect('/projects/'.$id)->with('success', 'Project has been updated');
+        // return redirect('/projects/'.$id)->with('success', 'Project has been updated');
     }
 
     public function update(Request $request, $id) {

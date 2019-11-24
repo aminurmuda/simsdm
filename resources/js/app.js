@@ -24,6 +24,8 @@ Vue.component('welcome', require('./components/Welcome.vue').default);
 Vue.component('modal', require('./components/Modal.vue').default);
 Vue.component('change-role', require('./components/ChangeRole.vue').default);
 Vue.component('navbar', require('./components/Navbar.vue').default);
+Vue.component('assign-member', require('./components/AssignMember.vue').default);
+Vue.component('assign-member-item', require('./components/AssignMemberItem.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -31,7 +33,7 @@ Vue.component('navbar', require('./components/Navbar.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// import Event from './event'
+Event = new Vue()
 
 const app = new Vue({
     el: '#app',
@@ -39,14 +41,13 @@ const app = new Vue({
 
     },
     methods: {
-        // showModal() {
-        //     console.log('showModal')
-        //     Event.$emit('show-modal', name)
-        // },
-        
-        // hideModal() {
-        //     Event.$emit('hide-modal', name)
-        // }
+        showModal(name) {
+            Event.$emit('show-modal', name)
+        },
+        hideModal(name) {
+            console.log('app js hide modal')
+            Event.$emit('hide-modal', name)
+        }
     }
 });
 

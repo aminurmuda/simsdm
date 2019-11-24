@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="field is-grouped">
-            <div class="control is-flex align-items-center">            
+            <div class="control is-flex align-items-center is-size-7">            
                 Login sebagai
             </div>
             <div class="control">

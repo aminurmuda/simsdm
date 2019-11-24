@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function skills() {
         return $this->hasMany('App\SkillsUsers');
     }
+
+    // public function skills() {
+    //     return $this->hasManyThrough('App\Skill', 'App\SkillsUsers');
+    // }
 }

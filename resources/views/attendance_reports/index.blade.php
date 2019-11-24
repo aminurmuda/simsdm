@@ -35,7 +35,18 @@
                         <form action="{{ route('attendance_reports.destroy', $attendance_report->id)}}" method="post" class="mx-0-25">
                             @csrf
                             @method('DELETE')
-                            <button class="button is-small is-danger" type="submit">Hapus</button>
+                            <button class="button is-small is-danger" type="button" @click="showModal('delete-{{$attendance_report->id}}')">
+                                Hapus
+                            </button>
+                            
+                            <modal modal-name="delete-{{$attendance_report->id}}">
+                                <template v-slot:header>
+                                    Haha
+                                </template>
+                                <template v-slot:footer>
+                                <button class="button is-small is-danger" type="submit">Hapus</button>
+                                </template>
+                            <modal/>
                         </form>
                     @endif
                     @if($attendance_report->status_id == 1)

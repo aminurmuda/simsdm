@@ -27,7 +27,7 @@
                             <a href="/departments" class="px-2 navbar-item">Departemen</a>
                             <a href="/projects" class="px-2 navbar-item">Proyek</a>
                             <a href="/customers" class="px-2 navbar-item">Customer</a>
-                            <a href="/attendance_reports" class="px-2 navbar-item">Lembur</a>
+                            <a href="/attendance_reports" class="px-2 navbar-item">Kehadiran</a>
                             <a href="/request_employees" class="px-2 navbar-item">Permintaan</a>
                         </template>
                         
@@ -35,48 +35,45 @@
                             <a href="/departments" class="px-2 navbar-item">Departemen</a>
                             <a href="/projects" class="px-2 navbar-item">Proyek</a>
                             <a href="/request_employees" class="px-2 navbar-item">Request Karyawan</a>
-                            <a href="/attendance_reports" class="px-2 navbar-item">Lembur</a>
+                            <a href="/attendance_reports" class="px-2 navbar-item">Kehadiran</a>
                         </template>
                         
                         <template v-else-if="user.role_id === 2">    
                             <a href="/projects" class="px-2 navbar-item">Proyek</a>
                             <a href="/request_employees" class="px-2 navbar-item">Permintaan Bergabung</a>
-                            <a href="/attendance_reports" class="px-2 navbar-item">Lembur</a>
+                            <a href="/attendance_reports" class="px-2 navbar-item">Kehadiran</a>
                         </template>
                     </template>
                 </div>
                 
                 <div class="navbar-end">
-                @guest
-                    <a class="navbar-item" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    @if (Route::has('register'))
-                        <a class="navbar-item" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    @endif
-                @else
-                    <a class="navbar-item">
-                        <change-role :current-role="{{ $current_role }}" :roles="{{$roles}}" :user-props="user"></change-role>
-                    </a>
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">
-                            {{ Auth::user()->name }}</b>
+                    @guest
+                        <a class="navbar-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        @if (Route::has('register'))
+                            <a class="navbar-item" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        @endif
+                    @else
+                        <a class="navbar-item">
+                            <change-role :current-role="{{ $current_role }}" :roles="{{$roles}}" :user-props="user"></change-role>
                         </a>
-
-                        <div class="navbar-dropdown py-0">
-                            <a class="navbar-item" href="/users/{{ Auth::user()->id }}">
-                                Profil
-                            </a>
-                            <a class="navbar-item" href="/users/{{ Auth::user()->id }}/change-role">
-                                Change Role
-                            </a>
-                            <a class="navbar-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link" v-text="user.name"></a>
+                            <div class="navbar-dropdown py-0">
+                                <a class="navbar-item" href="/users/{{ Auth::user()->id }}">
+                                    Profil
+                                </a>
+                                <a class="navbar-item" href="/users/{{ Auth::user()->id }}/change-role">
+                                    Change Role
+                                </a>
+                                <a class="navbar-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                @endguest
+                    @endguest
                 </div>
             </div>
         </div>
