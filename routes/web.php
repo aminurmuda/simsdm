@@ -19,15 +19,6 @@ Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
-// Route::prefix('projects')->group(function () {
-//     Route::get('/', 'ProjectController@index');
-//     Route::post('/', 'ProjectController@store');
-//     Route::get('/create', 'ProjectController@create');
-//     Route::get('/{project}', 'ProjectController@show');
-//     Route::put('/{project}', 'ProjectController@update');
-//     Route::delete('/{project}', 'ProjectController@destroy');
-//     Route::get('/{project}/edit', 'ProjectController@edit')->name('edit');
-// });
 
 Route::middleware('auth')->group(function () {
     Route::resource('/request_employees', 'RequestEmployeeController')->only(['index', 'create', 'destroy', 'store']);
@@ -38,6 +29,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('/users', 'UserController');
+    Route::get('/users/{create', 'UserController@create');
+    Route::post('/users/store', ['as' => 'store_user', 'uses' => 'UserController@store']);
     Route::get('/users/{id}/add-skill', 'UserController@addSkill');
     Route::post('/users/{id}/store-skill', 'UserController@storeSkill');
     Route::get('/users/{id}/change-role', 'UserController@changeRole');

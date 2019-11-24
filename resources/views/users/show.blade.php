@@ -60,11 +60,19 @@
             </div>
             <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Departemen</div>
-                <div class="column">{{$user->department->name}}</div>        
+                @if($user->department)
+                <div class="column">{{$user->department->name}}</div>      
+                @else
+                <div class="column has-text-grey-lighter">Departemen belom diisi</div>      
+                @endif
             </div>
             <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Divisi</div>
+                @if($user->department)
                 <div class="column">{{$user->department->division->name}}</div>        
+                @else
+                <div class="column has-text-grey-lighter">Divisi belom diisi</div>      
+                @endif
             </div>
         </div>
 

@@ -41,7 +41,6 @@ class ProjectController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
         ]);
-        // dd($validatedData);
         $project = Project::create($validatedData);
         return redirect('/projects')->with('success', 'Project has been added');
     }
