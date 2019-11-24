@@ -60,7 +60,7 @@
                 <div class="field">
                     <div class="control">
                         <button type="submit" class="button is-primary">
-                            {{ __('Register') }}
+                            {{ __('Create User') }}
                         </button>
                     </div>
                 </div>
