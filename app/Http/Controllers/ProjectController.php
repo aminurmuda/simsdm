@@ -50,7 +50,7 @@ class ProjectController extends Controller
         // $project_members = RequestEmployee::where('project_id', '=', $id)
         //     ->where('status_id', '=', '2') // ketika request sudah diterima
         //     ->with('user')->get();
-        $project_members = ProjectsUsers::with('user')->get();
+        $project_members = ProjectsUsers::with('user')->where('project_id', '=', $id)->get();
         return view('projects.show', compact('project', 'project_members'));
     }
 

@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="container">
-        <h1 class="title">Create Division</h1>
+        <h1 class="title">Create Request Employee</h1>
         <div class="box">
             <form method="post" action="{{ route('request_employees.store') }}">
                 @csrf

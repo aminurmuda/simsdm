@@ -9,7 +9,8 @@
         </div>
         <div class="box mt-1">
             <div class="columns is-hcentered">
-                <div class="column is-2 has-text-weight-bold">Nama Proyek</div>        
+                <div class="column is-1 has-text-weight-bold">Nama Karyawan</div>        
+                <div class="column is-1 has-text-weight-bold">Nama Proyek</div>        
                 <div class="column is-2 has-text-weight-bold">Lokasi Proyek</div>
                 <div class="column is-1 has-text-weight-bold">Customer</div>
                 <div class="column is-1 has-text-weight-bold">Manajer Proyek</div>  
@@ -20,7 +21,8 @@
             </div>
             @foreach($requests as $request)
             <div class="columns is-vcentered">
-                <div class="column is-2">{{ $request->project->name }}</div>        
+                <div class="column is-1">{{ $request->user->name }}</div>        
+                <div class="column is-1">{{ $request->project->name }}</div>        
                 <div class="column is-2">{{ $request->project->address }}</div>        
                 <div class="column is-1">{{ $request->project->customer->company_name }}</div>        
                 <div class="column is-1">{{ $request->project->manager->name }}</div>        
