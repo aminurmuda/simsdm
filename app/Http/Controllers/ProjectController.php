@@ -18,6 +18,8 @@ class ProjectController extends Controller
             $projects = Project::with('manager')->get();
         } else if(Auth::user()->role_id == '2') { // for employee role 
             $projects = Project::with('users')->with('manager')->get();
+        } else if(Auth::user()->role_id == '4') { // for department manager role 
+            $projects = Project::with('users')->with('manager')->where('department_id', '=', Auth::user()->department->id)->get();
         }
         return view('projects.index', compact('projects'));
     }
@@ -80,8 +82,8 @@ class ProjectController extends Controller
         $manager = User::find($project->manager_id);
         $members = ProjectsUsers::select('users.id', 'users.name', 'users.email')->where('project_id', $project->id)
         ->leftJoin('users', 'users.id', '=', 'projects_users.user_id')
-        ->get();
-        return view('projects.show', compact('project', 'manager', 'members'));
+        ->get();        
+        return redirect('/projects/'. $id)->with('success', 'Project member has been added');
     }
 
     public function storeAssignMember(Request $request, $id) {

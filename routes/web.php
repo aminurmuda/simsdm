@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/users/store', ['as' => 'store_user', 'uses' => 'UserController@store']);
     Route::get('/users/{id}/add-skill', 'UserController@addSkill');
     Route::post('/users/{id}/store-skill', 'UserController@storeSkill');
-    Route::get('/users/{id}/change-role', 'UserController@changeRole');
+    Route::delete('/users/{id}/delete-skill', ['as' => 'delete_skill', 'uses' => 'UserController@deleteSkill']);
     Route::put('/users/{id}/store_change_role', ['as' => 'store_change_role', 'uses' => 'UserController@storeChangeRole']);
 
 

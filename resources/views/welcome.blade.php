@@ -7,7 +7,7 @@
         <h1 class="title">Welcome to SIMSDM, {{ Auth::user()->name }}</h1>
         @endif
 
-        <button class="button is-link" @click="showModal('haha')">
+        <!-- <button class="button is-link" @click="showModal('haha')">
             Buka
         </button>
         
@@ -20,7 +20,7 @@
                     Hapus
                 </button>
             </template>
-        <modal/>
+        <modal/> -->
     </div>
 </div>
 @endsection

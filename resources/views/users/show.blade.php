@@ -87,6 +87,13 @@
                         <i class="material-icons has-text-warning">star</i>
                         @endfor
                     </div>
+                    @if(Auth::user()->role_id == 1)
+                        <form action="{{ route('delete_skill', $user_skill->id)}}" method="post" class="mx-0-25">
+                            @csrf
+                            @method('DELETE')
+                            <button class="button is-small is-danger" type="submit">Hapus</button>
+                        </form>
+                    @endif
                 </div>
                 @endforeach
             @else

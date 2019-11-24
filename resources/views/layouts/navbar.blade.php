@@ -42,6 +42,7 @@
                             <a href="/projects" class="px-2 navbar-item">Proyek</a>
                             <a href="/request_employees" class="px-2 navbar-item">Permintaan Bergabung</a>
                             <a href="/attendance_reports" class="px-2 navbar-item">Kehadiran</a>
+                            <a href="/paid_leaves" class="px-2 navbar-item">Cuti</a>
                         </template>
                     </template>
                 </div>
@@ -61,9 +62,6 @@
                             <div class="navbar-dropdown py-0">
                                 <a class="navbar-item" href="/users/{{ Auth::user()->id }}">
                                     Profil
-                                </a>
-                                <a class="navbar-item" href="/users/{{ Auth::user()->id }}/change-role">
-                                    Change Role
                                 </a>
                                 <a class="navbar-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     Logout

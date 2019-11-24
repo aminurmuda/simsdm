@@ -37,7 +37,7 @@
                         <button class="button is-small is-danger" type="submit">Hapus</button>
                         </form>
                     @endif
-                    @if($paid_leave->status_id == 1)
+                    @if($paid_leave->status_id == 1 && Auth::user()->role_id == 4)
                         <form action="{{ route('paid_leave_approve_by_manager', $paid_leave->id) }}" method="post" class="mx-0-25">
                             @csrf @method('PUT')
                             <button class="button is-small is-success" type="submit">Approve</button>

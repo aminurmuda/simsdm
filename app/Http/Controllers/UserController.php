@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Role;
 use App\RoleList;
@@ -77,6 +78,12 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $skills = Skill::all();
         return view('users.add-skill', compact('user', 'skills'));
+    }
+
+    public function deleteSkill($id) {
+        $skills_users = SkillsUsers::findOrFail($id);
+        $skills_users->delete();
+        return redirect('/users/'. Auth::user()->id)->with('success', 'Skill has been deleted successfully');
     }
 
     public function storeSkill(Request $request, $id) {
