@@ -36,7 +36,7 @@ class RequestEmployeeController extends Controller
     }
 
     public function approve_by_manager($id) {
-        RequestEmployee::whereId($id)->update(['status_id' => 2]);
+        RequestEmployee::whereId($id)->update(['status_id' => 2, 'reason' => '']);
         return redirect('/request_employees')->with('success', 'Request has been approved by manager');
     }
     
@@ -47,7 +47,7 @@ class RequestEmployeeController extends Controller
     }
 
     public function approve_by_employee(Request $request, $id) {
-        RequestEmployee::whereId($id)->update(['status_id' => 4]);
+        RequestEmployee::whereId($id)->update(['status_id' => 4, 'reason' => '']);
         $request_employee = RequestEmployee::find($id);
         $project_id = $request['project_id'];
         $user_id = $request['user_id'];
