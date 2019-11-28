@@ -9,7 +9,7 @@
             <h1 class="title">Data Diri</h1>
             @if(Auth::user()->id == $user->id || Auth::user()->role_id == 1)
             <div class="is-flex justify-content-end">
-                <a href="/users/{{$user->id}}/edit" class="button is-primary">Edit</a>
+                <a href="/users/{{$user->id}}/edit" class="button is-primary">Ubah Data Diri</a>
                 <a href="/users/{{$user->id}}/add-skill" class="button is-link ml-0-5">Tambah Skill</a>
             </div>
             @endif

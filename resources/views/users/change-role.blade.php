@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('page-title', 'Create')
+@section('page-title', 'Ubah Role')
 
 @section('content')
 
     <div class="container">
-        <h1 class="title">Change Role</h1>
+        <h1 class="title">Ubah Role</h1>
         <div class="box">
             <form method="post" action="{{ route('store_change_role', Auth::user()->id) }}">
                 @csrf @method('PUT')

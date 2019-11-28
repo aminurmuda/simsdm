@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('page-title', 'Create')
+@section('page-title', 'Ajukan Cuti')
 
 @section('content')
 
     <div class="container">
-        <h1 class="title">Create Paid Leave</h1>
+        <h1 class="title">Ajukan Cuti</h1>
         <div class="box">
             <form method="post" action="{{ route('paid_leaves.store') }}">
                 @csrf

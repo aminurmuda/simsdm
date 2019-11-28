@@ -37,7 +37,7 @@
                 <div class="column is-2 is-flex">
                     <a href="/projects/{{$project->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
                     @if(Auth::user()->role_id == 1)
-                    <a href="{{ route('projects.edit',$project->id)}}" class="mx-0-25 button is-small is-success">Edit</a>
+                    <a href="{{ route('projects.edit',$project->id)}}" class="mx-0-25 button is-small is-success">Ubah</a>
                     <form action="{{ route('projects.destroy', $project->id)}}" method="post" class="mx-0-25">
                     @csrf
                     @method('DELETE')

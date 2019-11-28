@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('page-title', 'Edit')
+@section('page-title', 'Tambah Skill')
 
 @section('content')
 
     <div class="container">
-        <h1 class="title">Add Skills</h1>
+        <h1 class="title">Tambah Skills</h1>
         <div class="box">
             @if ($errors->any())
                 <div class="alert alert-danger">

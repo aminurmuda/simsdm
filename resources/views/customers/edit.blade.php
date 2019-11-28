@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page-title', 'Edit')
+@section('page-title', 'Ubah Customer')
 
 @section('content')
 

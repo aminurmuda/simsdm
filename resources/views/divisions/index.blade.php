@@ -21,10 +21,10 @@
             <div class="columns is-vcentered">
                 <div class="column is-2">{{$division->name}}</div>        
                 <div class="column is-3">{{$division->description}}</div>
-                <div class="column is-3">{{$division->manager->name}}</div>
+                <div class="column is-3">@if($division->manager_id){{$division->manager->name}} @endif</div>
                 <div class="column is-4 is-flex">
                     <a href="/divisions/{{$division->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
-                    <a href="{{ route('divisions.edit',$division->id)}}" class="mx-0-25 button is-small is-success">Edit</a>
+                    <a href="{{ route('divisions.edit',$division->id)}}" class="mx-0-25 button is-small is-success">Ubah</a>
                     <form action="{{ route('divisions.destroy', $division->id)}}" method="post" class="mx-0-25">
                     @csrf
                     @method('DELETE')

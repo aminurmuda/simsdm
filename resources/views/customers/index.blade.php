@@ -26,7 +26,7 @@
                 <div class="column is-2">{{$customer->phone}}</div>
                 <div class="column is-3 is-flex">
                     <a href="/customers/{{$customer->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
-                    <a href="{{ route('customers.edit',$customer->id)}}" class="mx-0-25 button is-small is-success">Edit</a>
+                    <a href="{{ route('customers.edit',$customer->id)}}" class="mx-0-25 button is-small is-success">Ubah</a>
                     <form action="{{ route('customers.destroy', $customer->id)}}" method="post" class="mx-0-25">
                     @csrf
                     @method('DELETE')

@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('page-title', 'Create')
+@section('page-title', 'Tambah Karyawan')
 
 @section('content')
 
     <div class="container">
-        <h1 class="title">Create User</h1>
+        <h1 class="title">Tambah Karyawan</h1>
         <div class="box">
             <form method="POST" action="{{ route('store_user') }}">
                 @csrf
@@ -59,8 +59,21 @@
 
                 <div class="field">
                     <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="department_id">
+                                <option value="" disabled=true selected>-- Pilih Departemen --</option>
+                                @foreach($departments as $department)
+                                <option value="{{$department->id}}">{{$department->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
                         <button type="submit" class="button is-primary">
-                            {{ __('Create User') }}
+                            {{ __('Simpan') }}
                         </button>
                     </div>
                 </div>

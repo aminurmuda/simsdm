@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('page-title', 'Create')
+@section('page-title', 'Tambah')
 
 @section('content')
 
     <div class="container">
-        <h1 class="title">Create Request Employee</h1>
+        <h1 class="title">Tambah Request Karyawan</h1>
         <div class="box">
             <form method="post" action="{{ route('request_employees.store') }}">
                 @csrf

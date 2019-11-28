@@ -10,7 +10,7 @@
             <div>
                 <!-- can edit if has admin role (role with id 1) -->
                 @if(Auth::user()->role_id == 1)            
-                <a href="{{ route('customers.edit',$customer->id)}}" class="button is-primary">Edit</a>
+                <a href="{{ route('customers.edit',$customer->id)}}" class="button is-primary">Ubah</a>
                 @endif
             </div>
         </div>
