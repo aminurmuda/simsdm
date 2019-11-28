@@ -15,8 +15,8 @@
                 <div class="column is-2 has-text-weight-bold">Nama Proyek</div>        
                 <div class="column is-2 has-text-weight-bold">Lokasi Proyek</div>        
                 <div class="column is-2 has-text-weight-bold">Customer</div>
-                <div class="column is-1 has-text-weight-bold">Manajer Proyek</div>
                 <div class="column is-1 has-text-weight-bold">Departemen</div>
+                <div class="column is-1 has-text-weight-bold">Manajer Proyek</div>
                 <div class="column is-1 has-text-weight-bold">Deadline</div>
                 <div class="column is-1 has-text-weight-bold">Status</div>
                 <div class="column is-2 has-text-weight-bold">Aksi</div>  
@@ -26,6 +26,7 @@
                 <div class="column is-2">{{$project->name}}</div>        
                 <div class="column is-2">{{$project->address}}</div>        
                 <div class="column is-2">{{$project->customer->company_name}}</div>
+                <div class="column is-1">{{ $project->department->name }}</div>
                 <div class="column is-1">
                 @if($project->manager)
                     {{$project->manager->name}}
@@ -33,7 +34,6 @@
                     <p class="has-text-grey-lighter">Manager belum diassign</p>
                 @endif
                 </div>
-                <div class="column is-1">{{ $project->department->name }}</div>
                 <div class="column is-1">{{ tanggal($project->end_date) }}</div>
                 <div class="column is-1">{{ $project->status->name }}</div>
                 <div class="column is-2 is-flex">

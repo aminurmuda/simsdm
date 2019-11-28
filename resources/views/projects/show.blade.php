@@ -13,7 +13,7 @@
                 <a href="{{ route('projects.edit',$project->id)}}" class="button is-primary">Ubah</a>
                 <a href="/projects/{{$project->id}}/assign-member" class="button is-info">Tambah Anggota Proyek</a>
                 @endif
-                @if(Auth::user()->role_id == 1)
+                @if(Auth::user()->role_id == 1 || (Auth::user()->role_id == 4 && Auth::user()->department_id == $project->department_id))
                 <a href="/projects/{{$project->id}}/assign-manager" class="button is-link">Assign Project Manager</a>
                 @endif
             </div>

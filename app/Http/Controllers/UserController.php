@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Department;
+use App\EmployeeStatus;
 use App\Division;
 use App\ProjectsUsers;
 use App\Role;
@@ -25,7 +26,8 @@ class UserController extends Controller
             return view('users.index-employee', compact('users'));
         }
         else if(Auth::user()->role_id == '4') {
-            return view('users.index-department-manager', compact('users'));
+            $employee_statuses = EmployeeStatus::all();
+            return view('users.index-department-manager', compact('users', 'employee_statuses'));
         }
     }
 
@@ -117,6 +119,12 @@ class UserController extends Controller
     public function changeRole($id) {
         $role_lists = RoleList::where('user_id', '=', $id)->get();
         return view('users.change-role', compact('role_lists'));
+    }
+
+    public function changeStatus(Request $request, $id) {
+        $status_id = $request['status_id'];
+        User::whereId($id)->update(['status_id' => $status_id]);
+        return redirect('/users')->with('success', 'User status has been changed successfully');
     }
 
     public function storeChangeRole(Request $request, $id) {

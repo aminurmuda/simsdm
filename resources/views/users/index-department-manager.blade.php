@@ -10,7 +10,8 @@
                 <div class="column is-2 has-text-weight-bold">Role</div>        
                 <div class="column is-2 has-text-weight-bold">Email</div>
                 <div class="column is-3 has-text-weight-bold">Skill</div>
-                <div class="column is-3 has-text-weight-bold">Aksi</div>  
+                <div class="column is-1 has-text-weight-bold">Status</div>  
+                <div class="column is-2 has-text-weight-bold">Aksi</div>  
             </div>
             @foreach($users as $user)
             <div class="columns is-vcentered">
@@ -19,19 +20,44 @@
                 <div class="column is-2">{{$user->email}}</div>
                 <div class="column is-3">
                 @foreach($user->skills as $skill)
-                <button type="button" class="button m-0 is-small is-info">
+                <button type="button" class="button my-0-25 mx-0- is-small is-info">
                     {{$skill->skill->name}}
                 </button>
                 @endforeach
                 </div>
-                <div class="column is-3 is-flex">
-                <a href="/users/{{$user->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
-                    <a href="{{ route('users.edit',$user->id)}}" class="mx-0-25 button is-small is-success">Ubah</a>
-                    <form action="{{ route('users.destroy', $user->id)}}" method="post" class="mx-0-25">
-                    @csrf
-                    @method('DELETE')
-                    <button class="button is-small is-danger" type="submit">Hapus</button>
-                    </form>
+                <div class="column is-1 is-flex">{{$user->status->name}}</div>  
+                <div class="column is-2 is-flex">
+                    <button class="button is-small is-success" @click="showModal('change-status{{$user->id}}')">
+                        Ubah Status
+                    </button>
+                    
+                    <modal :name="'change-status{{$user->id}}'">
+                        <div class="box p-1" slot="main-content">
+                            <p class="title is-size-6">Ubah Status</p>
+                            <div>
+                                <form action="{{ route('change_employee_status', $user->id)}}" method="post" class="mx-0-25">
+                                    @csrf @method('PUT')
+                                    <div class="field">
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select name="status_id" id="">
+                                                    <option value="" disabled=true selected>-- Pilih Status --</option>
+                                                    @foreach($employee_statuses as $employee_status)
+                                                    <option value="{{$employee_status->id}}"  {{ $employee_status->id == Auth::user()->status_id ? 'selected' : '' }}>{{$employee_status->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="is-flex justify-content-end">
+                                        <button class="button is-danger" type="submit">Simpan</button>
+                                        <button type="button" class="ml-0-5 button is-link" @click="hideModal('change-status{{$user->id}}')">Tutup</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </modal>
                 </div>  
             </div>
             @endforeach

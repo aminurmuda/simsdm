@@ -41,8 +41,9 @@ class PaidLeaveController extends Controller
         return redirect('/paid_leaves')->with('success', 'Request has been approved by manager');
     }
     
-    public function paid_leave_reject_by_manager($id) {
-        PaidLeave::whereId($id)->update(['status_id' => 3]);
+    public function paid_leave_reject_by_manager(Request $request, $id) {
+        $reject_reason = $request['reject_reason'];
+        PaidLeave::whereId($id)->update(['status_id' => 3, 'reject_reason' => $reject_reason]);
         return redirect('/paid_leaves')->with('success', 'Request has been rejected by manager');
     }
 

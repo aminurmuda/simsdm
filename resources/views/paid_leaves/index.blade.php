@@ -30,6 +30,19 @@
                 <div class="column is-2">{{$paid_leave->reason}}</div>
                 <div class="column is-2 is-flex">
                     <a href="/paid_leaves/{{$paid_leave->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
+                    <button class="button is-small is-danger" @click="showModal('reject-reason-{{$paid_leave->id}}')">
+                        Lihat Alasan Penolakan
+                    </button>
+                    
+                    <modal :name="'reject-reason-{{$paid_leave->id}}'">
+                        <div class="box p-1" slot="main-content">
+                            <p class="title is-size-6">Alasan Penolakan</p>
+                            <p class="is-6 mb-2">{{$paid_leave->reject_reason}}</p>
+                            <div class="is-flex justify-content-end">
+                                <button type="button" class="button is-link" @click="hideModal('reject-reason-{{$paid_leave->id}}')">Tutup</button>
+                            </div>
+                        </div>
+                    </modal>
                     @if(Auth::user()->role_id == 1)
                         <form action="{{ route('paid_leaves.destroy', $paid_leave->id)}}" method="post" class="mx-0-25">
                         @csrf
@@ -42,10 +55,33 @@
                             @csrf @method('PUT')
                             <button class="button is-small is-success" type="submit">Approve</button>
                         </form>
-                        <form action="{{ route('paid_leave_reject_by_manager', $paid_leave->id)}}" method="post" class="mx-0-25">
+                        <!-- <form action="{{ route('paid_leave_reject_by_manager', $paid_leave->id)}}" method="post" class="mx-0-25">
                             @csrf @method('PUT')
                             <button class="button is-small is-danger" type="submit">Reject</button>
-                        </form>
+                        </form> -->
+                        <button class="button is-small is-danger" @click="showModal('reject-{{$paid_leave->id}}')">
+                            Tolak
+                        </button>
+                        
+                        <modal :name="'reject-{{$paid_leave->id}}'">
+                            <div class="box p-1" slot="main-content">
+                                <p class="title is-size-6">Tolak Permintaan Cuti</p>
+                                <div>
+                                    <form action="{{ route('paid_leave_reject_by_manager', $paid_leave->id)}}" method="post" class="mx-0-25">
+                                        @csrf @method('PUT')
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea type="text" class="textarea" name="reject_reason" placeholder="Alasan penolakan"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="is-flex justify-content-end">
+                                            <button class="button is-danger" type="submit">Tolak</button>
+                                            <button type="button" class="ml-0-5 button is-link" @click="hideModal('reject-{{$paid_leave->id}}')">Batal</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </modal>
                     @endif
                 </div>  
             </div>

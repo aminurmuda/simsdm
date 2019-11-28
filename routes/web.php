@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('/users', 'UserController');
     Route::get('/users/{create', 'UserController@create');
+    Route::put('/users/{id}/change_status', ['as' => 'change_employee_status', 'uses' => 'UserController@changeStatus']);
     Route::post('/users/store', ['as' => 'store_user', 'uses' => 'UserController@store']);
     Route::get('/users/{id}/add-skill', 'UserController@addSkill');
     Route::post('/users/{id}/store-skill', 'UserController@storeSkill');
