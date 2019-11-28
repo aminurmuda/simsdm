@@ -40,8 +40,9 @@ class RequestEmployeeController extends Controller
         return redirect('/request_employees')->with('success', 'Request has been approved by manager');
     }
     
-    public function reject_by_manager($id) {
-        RequestEmployee::whereId($id)->update(['status_id' => 3]);
+    public function reject_by_manager(Request $request, $id) {
+        $reason = $request['reason'];
+        RequestEmployee::whereId($id)->update(['status_id' => 3, 'reason' => $reason]);
         return redirect('/request_employees')->with('success', 'Request has been rejected by manager');
     }
 
@@ -55,8 +56,9 @@ class RequestEmployeeController extends Controller
         return redirect('/request_employees')->with('success', 'Request has been approved by employee');
     }
     
-    public function reject_by_employee($id) {
-        RequestEmployee::whereId($id)->update(['status_id' => 5]);
+    public function reject_by_employee(Request $request, $id) {
+        $reason = $request['reason'];
+        RequestEmployee::whereId($id)->update(['status_id' => 5, 'reason' => $reason]);
         return redirect('/request_employees')->with('success', 'Request has been rejected by employee');
     }
 

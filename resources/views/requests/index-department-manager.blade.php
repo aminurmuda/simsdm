@@ -30,7 +30,7 @@
                 <div class="column is-1">{{ $request->role }}</div>       
                 <div class="column is-1">{{ $request->status->name }}</div>       
                 <div class="column is-3 is-flex">
-                    <a href="/projects/{{$request->project_id}}" class="mx-0-25 button is-small is-link">Lihat</a>
+                    <a href="/projects/{{$request->project_id}}" class="mx-0-25 button is-small is-link">Lihat Proyek</a>
                     @if(Auth::user()->role_id == 1)
                         <form action="{{ route('request_employees.destroy', $request->id)}}" method="post" class="mx-0-25">
                         @csrf
@@ -44,10 +44,32 @@
                             @csrf @method('PUT')
                             <button class="button is-small is-success" type="submit">Approve</button>
                         </form>
-                        <form action="{{ route('request_reject_by_manager', $request->id)}}" method="post" class="mx-0-25">
-                            @csrf @method('PUT')
-                            <button class="button is-small is-danger" type="submit">Reject</button>
-                        </form>
+
+                        <button class="button is-small is-danger" @click="showModal('reject-{{$request->id}}')">
+                            Reject
+                        </button>
+                        
+                        <modal :name="'reject-{{$request->id}}'">
+                            <div class="box p-1" slot="main-content">
+                                <p class="title is-size-6">Tolak Permintaan Bergabung</p>
+                                <p class="is-6 mb-0-5">{{$request->project->name}}</p>
+                                <p class="is-size-7 mb-1" v-text="infoMessage"></p>
+                                <div class="">
+                                    <form action="{{ route('request_reject_by_manager', $request->id)}}" method="post" class="mx-0-25">
+                                        @csrf @method('PUT')
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea type="text" class="textarea" name="reason" placeholder="Alasan penolakan"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="is-flex justify-content-end">
+                                            <button class="button is-danger" type="submit">Reject</button>
+                                            <button type="button" class="ml-0-5 button is-link" @click="hideModal('reject-{{$request->id}}')">Batal</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </modal>
                     @endif
                 </div>  
             </div>

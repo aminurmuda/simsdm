@@ -31,7 +31,7 @@
                 <div class="column is-1">{{ $request->role }}</div>       
                 <div class="column is-1">{{ $request->status->name }}</div>       
                 <div class="column is-3 is-flex">
-                    <a href="/projects/{{$request->project_id}}" class="mx-0-25 button is-small is-link">Lihat</a>
+                    <a href="/projects/{{$request->project_id}}" class="mx-0-25 button is-small is-link">Lihat Proyek</a>
                     <form action="{{ route('request_employees.destroy', $request->id)}}" method="post" class="mx-0-25">
                     @csrf
                     @method('DELETE')
