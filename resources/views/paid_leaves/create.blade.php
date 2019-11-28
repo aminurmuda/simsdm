@@ -12,9 +12,11 @@
                     <div class="control">
                         <div class="columns">
                             <div class="column is-6">
+                                <label class="label">Tanggal Mulai</label>
                                 <input type="date" class="input" name="start_date">
                             </div>
                             <div class="column is-6">                        
+                                <label class="label">Tanggal Selesai</label>
                                 <input type="date" class="input" name="end_date">
                             </div>
                         </div>
@@ -25,8 +27,9 @@
                         <textarea type="text" class="textarea" name="reason" placeholder="Alasan"></textarea>
                     </div>
                 </div>
-
-                <button type="submit" class="button is-primary">Buat</button>
+                <div class="is-flex justify-content-end">
+                    <button type="submit" class="button is-primary">Ajukan Cuti</button>
+                </div>
             </form>
         </div>
     </div>

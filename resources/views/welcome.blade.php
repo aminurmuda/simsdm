@@ -7,20 +7,16 @@
         <h1 class="title">Welcome to SIMSDM, {{ Auth::user()->name }}</h1>
         @endif
 
-        <!-- <button class="button is-link" @click="showModal('haha')">
-            Buka
+        <!-- <button class="button is-link" @click="showModal('modal-info')">
+            Buka Modal
         </button>
         
-        <modal :modal-name="'haha'">
-            <template v-slot:header>
-                Haha
-            </template>
-            <template v-slot:footer>
-                <button type="button" class="button is-danger">
-                    Hapus
-                </button>
-            </template>
-        <modal/> -->
+        <modal :name="'modal-info'">
+            <div class="box p-1" slot="main-content">
+                <p class="title is-6 mb-0-5">Informasi</p>
+                <button class="button is-primary is-small is-fullwidth" @click="hideModal('modal-info')">Tutup</button>
+            </div>
+        </modal> -->
     </div>
 </div>
 @endsection

@@ -71,6 +71,7 @@
             <div class="column is-2 has-text-weight-bold">Nama Karyawan</div>
             <div class="column is-2 has-text-weight-bold">Divisi</div>
             <div class="column is-2 has-text-weight-bold">Departemen</div>
+            <div class="column is-4 has-text-weight-bold">Skill</div>
             <div class="column is-2 has-text-weight-bold">Role</div>
             </div>
 
@@ -79,6 +80,14 @@
                 <div class="column is-2">{{$member->user->name}}</div>
                 <div class="column is-2">{{$member->user->department->division->name}}</div>
                 <div class="column is-2">{{$member->user->department->name}}</div>
+                <div class="column is-4">
+                    @if(count($member->user->skills) > 0)
+                        <!-- {{$member->user->skills}} -->
+                        @foreach($member->user->skills as $skill)
+                            {{$skill->skill->name}},
+                        @endforeach
+                    @endif
+                </div>
                 <div class="column is-2">{{$member->role}}</div>
             </div>
             @endforeach
