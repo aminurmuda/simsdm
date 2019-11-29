@@ -1,9 +1,10 @@
 @extends('layouts.app')
-@section('page-title', 'Index')
+@section('page-title', 'Daftar Karyawan')
 
 @section('content')
 
     <div class="container">
+        <h1 class="title">Daftar Karyawan</h1>
         <div class="box mt-1">
             <div class="columns is-hcentered">
                 <div class="column is-2 has-text-weight-bold">Nama</div>        
@@ -51,7 +52,7 @@
                                     </div>
 
                                     <div class="is-flex justify-content-end">
-                                        <button class="button is-danger" type="submit">Simpan</button>
+                                        <button class="button is-success" type="submit">Simpan</button>
                                         <button type="button" class="ml-0-5 button is-link" @click="hideModal('change-status{{$user->id}}')">Tutup</button>
                                     </div>
                                 </form>

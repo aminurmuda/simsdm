@@ -1,9 +1,10 @@
 @extends('layouts.app')
-@section('page-title', 'Index')
+@section('page-title', 'Daftar Request Karyawan')
 
 @section('content')
 
     <div class="container">
+        <h1 class="title">Daftar Request Karyawan</h1>
         <div class="box mt-1">
             <div class="columns is-hcentered">
                 <div class="column is-2 has-text-weight-bold">Nama Proyek</div>        

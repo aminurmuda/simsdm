@@ -6,7 +6,7 @@
             </div>
             <div class="control">
                 <div class="select is-small">
-                    <select v-model="selectedRole" @change="changeRole()">
+                    <select style="border:0px;" v-model="selectedRole" @change="changeRole()">
                         <option :value="list.role" v-for="list in roles" :key="list.role.id" v-text="list.role.name"></option>
                     </select>
                 </div>

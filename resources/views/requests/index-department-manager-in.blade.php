@@ -4,14 +4,12 @@
 @section('content')
 
     <div class="container">
-        <div class="is-flex justify-content-end">
-            <a href="/request_employees/create" class="button is-success">Buat Request Karyawan</a>
-        </div>
+        <h1 class="title">Daftar Permintaan Masuk</h1>
         <div class="box mt-1">
             <div class="columns is-hcentered">
                 <div class="column is-1 has-text-weight-bold">Nama Karyawan</div>        
+                <div class="column is-1 has-text-weight-bold">Nama Requestor</div>
                 <div class="column is-1 has-text-weight-bold">Nama Proyek</div>        
-                <div class="column is-2 has-text-weight-bold">Lokasi Proyek</div>
                 <div class="column is-1 has-text-weight-bold">Customer</div>
                 <div class="column is-1 has-text-weight-bold">Manajer Proyek</div>  
                 <div class="column is-1 has-text-weight-bold">Deadline</div>  
@@ -22,15 +20,15 @@
             </div>
             @foreach($requests as $request)
             <div class="columns is-vcentered">
-                <div class="column is-1">{{ $request->user->name }}</div>        
+                <div class="column is-1">{{ $request->requestee->name }}</div>        
+                <div class="column is-1">{{ $request->requestor->name }}</div>        
                 <div class="column is-1">{{ $request->project->name }}</div>        
-                <div class="column is-2">{{ $request->project->address }}</div>        
                 <div class="column is-1">{{ $request->project->customer->company_name }}</div>        
                 <div class="column is-1">{{ $request->project->manager->name }}</div>        
                 <div class="column is-1">{{ tanggal($request->end_date) }}</div>        
                 <div class="column is-1">{{ $request->role }}</div>       
                 <div class="column is-1">{{ $request->status->name }}</div>       
-                <div class="column is-1">{{ $request->user->status->name }}</div>       
+                <div class="column is-1">{{ $request->requestee->status->name }}</div>       
                 <div class="column is-2 is-flex">
                     <a href="/projects/{{$request->project_id}}" class="mx-0-25 button is-small is-link">Lihat Proyek</a>
                     @if($request->status_id == 3 || $request->status_id == 5)

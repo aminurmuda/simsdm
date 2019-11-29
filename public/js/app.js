@@ -38297,6 +38297,7 @@ var render = function() {
                   expression: "selectedRole"
                 }
               ],
+              staticStyle: { border: "0px" },
               on: {
                 change: [
                   function($event) {

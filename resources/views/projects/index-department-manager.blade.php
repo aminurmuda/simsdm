@@ -39,13 +39,34 @@
                 <div class="column is-1">{{ $project->status->name }}</div>
                 <div class="column is-2 is-flex">
                     <a href="/projects/{{$project->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
-                    @if(Auth::user()->role_id == 1)
-                    <a href="{{ route('projects.edit',$project->id)}}" class="mx-0-25 button is-small is-success">Ubah</a>
-                    <form action="{{ route('projects.destroy', $project->id)}}" method="post" class="mx-0-25">
-                    @csrf
-                    @method('DELETE')
-                    <button class="button is-small is-danger" type="submit">Hapus</button>
-                    </form>
+                    @if(!$project->manager)
+                    <button class="button is-small is-link" @click="showModal('assign-manager-{{$project->id}}')">Assign Manager</button>
+                        
+                        <modal :name="'assign-manager-{{$project->id}}'">
+                            <div class="box p-1" slot="main-content">
+                                <p class="title is-size-6">Assign Manager</p>
+                                <form method="post" action="/projects/{{$project->id}}/store-assign-manager">
+                                    @method('PUT')
+                                    @csrf
+                                    <div class="field">
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select name="manager_id" id="">
+                                                    <option value="" disabled=true selected>-- Pilih Manager --</option>
+                                                    @foreach($users as $user)
+                                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="is-flex justify-content-end">
+                                        <button type="submit" class="button is-primary">Simpan</button>
+                                        <button type="button" class="ml-0-5 button is-link" @click="hideModal('assign-manager-{{$project->id}}')">Tutup</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </modal>
                     @endif
                 </div>  
             </div>

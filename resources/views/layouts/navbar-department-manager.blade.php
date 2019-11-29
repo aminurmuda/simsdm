@@ -1,5 +1,5 @@
-<a href="/departments" class="px-2 navbar-item">Departemen</a>
-<a href="/projects" class="px-2 navbar-item">Proyek</a>
-<a href="/paid_leaves" class="px-2 navbar-item">Cuti</a>
-<a href="/request_employees" class="px-2 navbar-item">Request Karyawan</a>
-<a href="/users" class="px-2 navbar-item">Karyawan</a>
+<a href="/users" class="px-1 navbar-item">Karyawan</a>
+<a href="/projects" class="px-1 navbar-item">Proyek</a>
+<a href="/request_employees?type=in" class="px-1 navbar-item">Request Masuk</a>
+<a href="/request_employees?type=out" class="px-1 navbar-item">Request Keluar</a>
+<a href="/paid_leaves" class="px-1 navbar-item">Cuti</a>

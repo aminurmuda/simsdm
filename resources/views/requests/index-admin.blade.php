@@ -1,9 +1,10 @@
 @extends('layouts.app')
-@section('page-title', 'Index')
+@section('page-title', 'Daftar Request Karyawan')
 
 @section('content')
 
     <div class="container">
+        <h1 class="title">Daftar Request Karyawan</h1>
         <!-- can create if has admin role (role with id 1) -->
         <div class="is-flex justify-content-end">
             <a href="/request_employees/create" class="button is-success">Buat Request Karyawan</a>
@@ -22,7 +23,7 @@
             </div>
             @foreach($requests as $request)
             <div class="columns is-vcentered">
-                <div class="column is-1">{{ $request->user->name }}</div>        
+                <div class="column is-1">{{ $request->requestee->name }}</div>        
                 <div class="column is-1">{{ $request->project->name }}</div>          
                 <div class="column is-2">{{ $request->project->department->name }}</div>        
                 <div class="column is-1">{{ $request->project->customer->company_name }}</div>        

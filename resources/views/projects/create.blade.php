@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="container">
-        <h1 class="title">Buat Proyel</h1>
+        <h1 class="title">Buat Proyek</h1>
         <div class="box">
             <form method="post" action="{{ route('projects.store') }}">
                 @csrf
@@ -44,6 +44,18 @@
                             <div class="column is-6">                        
                                 <input type="date" class="input" name="end_date">
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="department_id">
+                                <option value="" disabled=true selected>-- Pilih Departemen --</option>
+                                @foreach($departments as $department)
+                                <option value="{{$department->id}}">{{$department->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>

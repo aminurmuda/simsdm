@@ -1,7 +1,7 @@
 <navbar 
     :user="{{ auth()->check() ? Auth::user(): 'asd' }}"
     inline-template>
-    <nav class="navbar box p-0" role="navigation" aria-label="main navigation">
+    <nav style="position:fixed;width:100%;" class="navbar box p-0" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
@@ -25,12 +25,21 @@
                             @include('layouts.navbar-admin')
                         </template>
                         
-                        <template v-else-if="user.role_id === 4">    
-                            @include('layouts.navbar-department-manager')
-                        </template>
                         
                         <template v-else-if="user.role_id === 2">    
                             @include('layouts.navbar-employee')
+                        </template>
+
+                        <template v-else-if="user.role_id === 3">    
+                            @include('layouts.navbar-division-manager')
+                        </template>
+                        
+                        <template v-else-if="user.role_id === 4">    
+                            @include('layouts.navbar-department-manager')
+                        </template>
+
+                        <template v-else-if="user.role_id === 5">    
+                            @include('layouts.navbar-project-manager')
                         </template>
                     </template>
                 </div>

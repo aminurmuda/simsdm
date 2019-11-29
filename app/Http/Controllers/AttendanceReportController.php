@@ -13,12 +13,30 @@ class AttendanceReportController extends Controller
 {
     public function index() {
         $attendance_reports = null;
-        if(Auth::user()->role_id == '1' || Auth::user()->role_id == '4') {
+        if(Auth::user()->role_id == '1') {
             $attendance_reports = AttendanceReport::all();
-        } elseif(Auth::user()->role_id == '2') {
+            return view('attendance_reports.index-admin', compact('attendance_reports'));
+        } 
+        
+        else if(Auth::user()->role_id == '2') {
             $attendance_reports = AttendanceReport::where('user_id', '=', Auth::user()->id)->get();
+            return view('attendance_reports.index', compact('attendance_reports'));
         }
-        return view('attendance_reports.index', compact('attendance_reports'));
+        
+        else if(Auth::user()->role_id == '3') {
+            $attendance_reports = AttendanceReport::where('user_id', '=', Auth::user()->id)->get();
+            return view('attendance_reports.index', compact('attendance_reports'));
+        }
+
+        else if(Auth::user()->role_id == '4') {
+            $attendance_reports = AttendanceReport::all();
+            return view('attendance_reports.index', compact('attendance_reports'));
+        }
+        
+        else if(Auth::user()->role_id == '5') {
+            $attendance_reports = AttendanceReport::where('user_id', '=', Auth::user()->id)->get();
+            return view('attendance_reports.index-project-manager', compact('attendance_reports'));
+        }
     }
     
     public function create() {

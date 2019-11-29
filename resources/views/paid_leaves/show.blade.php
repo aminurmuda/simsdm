@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('page-title', 'Lihat Proyek')
+@section('page-title', 'Lihat Cuti')
 
 @section('content')
 
     <div class="container">
         
         <div class="is-flex justify-content-between">
-            <h1 class="title">Project Details</h1>
+            <h1 class="title">Detail Pengajuan Cuti</h1>
         </div>
         <div class="box">
             <div class="columns mt">

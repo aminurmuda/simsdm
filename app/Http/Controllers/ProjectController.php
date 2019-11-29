@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Customer;
+use App\Department;
 use App\Project;
 use App\ProjectsUsers;
 use App\RequestEmployee;
@@ -13,26 +14,48 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     public function index() {
-        $projects = null;
+        $users = User::all();
+        // Admin
         if(Auth::user()->role_id == '1') {
             $projects = Project::with('manager')->get();
-        } else if(Auth::user()->role_id == '2') { // for employee role 
+            return view('projects.index', compact('projects'));
+        } 
+        
+        // Karyawan
+        else if(Auth::user()->role_id == '2') {
             $projects = Project::with('users')->with('manager')->get();
-        } else if(Auth::user()->role_id == '4') { // for department manager role 
+            return view('projects.index', compact('projects'));
+        } 
+        
+        // Division Manager
+        else if(Auth::user()->role_id == '3') {
+            $projects = Project::with('users')->with('manager')->get();
+            return view('projects.index-division-manager', compact('projects'));
+        } 
+        
+        
+        // Department Manager
+        else if(Auth::user()->role_id == '4') {
             $projects = Project::with('users')->with('manager')->where('department_id', '=', Auth::user()->department->id)->get();
-        }
-        return view('projects.index', compact('projects'));
+            return view('projects.index-department-manager', compact('projects','users'));
+        } 
+        
+        // Project Manager
+        else if(Auth::user()->role_id == '5') {
+            $projects = Project::with('users')->with('manager')->get();
+            return view('projects.index-project-manager', compact('projects'));
+        } 
     }
     
     public function create() {
         $customers = Customer::all();
-        return view('projects.create', compact('customers'));
+        $departments = Department::all();
+        return view('projects.create', compact('customers', 'departments'));
     }
 
     public function store(Request $request) {
-        $department_id = Auth::user()->department->id;
         $status_id = 1;
-        $request->request->add(['department_id' => $department_id, 'status_id' => $status_id]);
+        $request->request->add(['status_id' => $status_id]);
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required|max:255',
@@ -77,8 +100,8 @@ class ProjectController extends Controller
 
     public function storeAssignManager(Request $request, $id) {
         $project = Project::findOrFail($id);
-        $project->manager_id = $request['manager_id'];
-        $project->save();
+        $manager_id = $request['manager_id'];
+        Project::whereId($id)->update(['manager_id' => $manager_id]);
         $manager = User::find($project->manager_id);
         $members = ProjectsUsers::select('users.id', 'users.name', 'users.email')->where('project_id', $project->id)
         ->leftJoin('users', 'users.id', '=', 'projects_users.user_id')

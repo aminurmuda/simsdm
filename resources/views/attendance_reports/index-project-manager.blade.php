@@ -5,12 +5,6 @@
 
     <div class="container">
         <h1 class="title">Daftar Kehadiran/Lembur</h1>
-        <!-- can create if has admin role (role with id 1) -->
-        @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
-        <div class="is-flex justify-content-end">
-            <a href="/attendance_reports/create" class="button is-success">Buat</a>
-        </div>
-        @endif
         <div class="box mt-1">
             <div class="columns is-hcentered">
                 <div class="column is-2 has-text-weight-bold">Nama</div>        
@@ -32,24 +26,6 @@
                 <div class="column is-1">{{ lembur($attendance_report->clock_in, $attendance_report->clock_out) }}</div>
                 <div class="column is-1">{{ $attendance_report->status->name }}</div>
                 <div class="column is-2 is-flex">
-                    @if(Auth::user()->role_id == '1' || Auth::user()->role_id == '2')
-                        <form action="{{ route('attendance_reports.destroy', $attendance_report->id)}}" method="post" class="mx-0-25">
-                            @csrf
-                            @method('DELETE')
-                            <button class="button is-small is-danger" type="button" @click="showModal('delete-{{$attendance_report->id}}')">
-                                Hapus
-                            </button>
-                            
-                            <modal modal-name="delete-{{$attendance_report->id}}">
-                                <template v-slot:header>
-                                    Haha
-                                </template>
-                                <template v-slot:footer>
-                                <button class="button is-small is-danger" type="submit">Hapus</button>
-                                </template>
-                            <modal/>
-                        </form>
-                    @endif
                     @if($attendance_report->status_id == 1)
                         <form action="{{ route('attendance_approve', $attendance_report->id)}}" method="post" class="mx-0-25">
                         @csrf
@@ -59,12 +35,17 @@
                         <form action="{{ route('attendance_reject', $attendance_report->id)}}" method="post" class="mx-0-25">
                         @csrf
                         @method('PUT')
-                        <button class="button is-small is-link" type="submit">Reject</button>
+                        <button class="button is-small is-danger" type="submit">Reject</button>
                         </form>
                     @endif
                 </div>  
             </div>
             @endforeach
+            <modal :name="'modal-info'">
+                <div class="box p-1" slot="main-content">
+                    haha
+                </div>
+            </modal>
         </div>
     </div>
     

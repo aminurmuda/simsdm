@@ -12,19 +12,25 @@ use Illuminate\Http\Request;
 
 class RequestEmployeeController extends Controller
 {
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+        $type = $request['type']; 
+        $department = Auth::user()->department;
         if(Auth::user()->role_id == '1') { // for admin role
             $requests = RequestEmployee::all();
             return view('requests.index-admin', compact('requests'));
         } else if(Auth::user()->role_id == '4') { // for department manager role 
-            $requests = RequestEmployee::where('requestor_id', '=', Auth::user()->id)->get();
-            return view('requests.index-department-manager', compact('requests'));
+            if($type == 'out') {
+                $requests = RequestEmployee::where('requestor_id', '=', Auth::user()->id)->get();
+                return view('requests.index-department-manager-out', compact('requests'));
+            } else {   // request in when type is null or 'in'
+                $requests = RequestEmployee::where('requestor_id', '=', Auth::user()->id)->get();
+                return view('requests.index-department-manager-in', compact('requests'));
+            }
         } else { //for employee role
             $requests = RequestEmployee::where('requestee_id', '=', Auth::user()->id)->get();
             return view('requests.index', compact('requests'));
         }
-
     }
 
     public function create()

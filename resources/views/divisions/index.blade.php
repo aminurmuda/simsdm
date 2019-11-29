@@ -1,9 +1,10 @@
 @extends('layouts.app')
-@section('page-title', 'Index')
+@section('page-title', 'Daftar Divisi')
 
 @section('content')
 
     <div class="container">
+       <h1 class="title">Daftar Divisi</h1>
         <!-- can create if has admin role (role with id 1) -->
         @if(Auth::user()->role_id == 1)
         <div class="is-flex justify-content-end">

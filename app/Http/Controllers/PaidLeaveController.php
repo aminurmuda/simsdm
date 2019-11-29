@@ -10,8 +10,20 @@ use Illuminate\Http\Request;
 class PaidLeaveController extends Controller
 {
     public function index() {
-        $paid_leaves = PaidLeave::all();
-        return view('paid_leaves.index', compact('paid_leaves'));
+        if(Auth::user()->role_id == '1') {
+            $paid_leaves = PaidLeave::all();
+            return view('paid_leaves.index', compact('paid_leaves'));
+        } 
+
+        else if(Auth::user()->role_id == '4') {
+            $paid_leaves = PaidLeave::all();
+            return view('paid_leaves.index-project-manager', compact('paid_leaves'));
+        } 
+
+        else if(Auth::user()->role_id == '5') {
+            $paid_leaves = PaidLeave::all();
+            return view('paid_leaves.index-project-manager', compact('paid_leaves'));
+        } 
     }
     
     public function create() {
