@@ -32,6 +32,21 @@
                 <div class="column is-1">{{ lembur($attendance_report->clock_in, $attendance_report->clock_out) }}</div>
                 <div class="column is-1">{{ $attendance_report->status->name }}</div>
                 <div class="column is-2 is-flex">
+                    @if($attendance_report->status_id == 3)
+                    <button class="button is-small is-primary" @click="showModal('reject-reason-{{$attendance_report->id}}')">
+                        Lihat Alasan Penolakan
+                    </button>
+                    <modal :name="'reject-reason-{{$attendance_report->id}}'">
+                        <div class="box p-1" slot="main-content">
+                            <p class="title is-size-6">Alasan Penolakan</p>
+                            <p class="is-6 mb-2">{{$attendance_report->reject_reason}}</p>
+                            <div class="is-flex justify-content-end">
+                                <button type="button" class="button is-link" @click="hideModal('reject-reason-{{$attendance_report->id}}')">Tutup</button>
+                            </div>
+                        </div>
+                    </modal>
+                    @endif
+                    
                     @if($attendance_report->status_id == 1)
                         <button class="button is-small is-danger" @click="showModal('delete-{{$attendance_report->id}}')">
                             Hapus

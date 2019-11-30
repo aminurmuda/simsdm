@@ -26,17 +26,52 @@
                 <div class="column is-1">{{ lembur($attendance_report->clock_in, $attendance_report->clock_out) }}</div>
                 <div class="column is-1">{{ $attendance_report->status->name }}</div>
                 <div class="column is-2 is-flex">
+
+                    @if($attendance_report->status_id == 3)
+                    <button class="button is-small is-primary" @click="showModal('reject-reason-{{$attendance_report->id}}')">
+                        Lihat Alasan Penolakan
+                    </button>
+                    <modal :name="'reject-reason-{{$attendance_report->id}}'">
+                        <div class="box p-1" slot="main-content">
+                            <p class="title is-size-6">Alasan Penolakan</p>
+                            <p class="is-6 mb-2">{{$attendance_report->reject_reason}}</p>
+                            <div class="is-flex justify-content-end">
+                                <button type="button" class="button is-link" @click="hideModal('reject-reason-{{$attendance_report->id}}')">Tutup</button>
+                            </div>
+                        </div>
+                    </modal>
+                    @endif
+
                     @if($attendance_report->status_id == 1)
                         <form action="{{ route('attendance_approve', $attendance_report->id)}}" method="post" class="mx-0-25">
                         @csrf
                         @method('PUT')
                         <button class="button is-small is-success" type="submit">Approve</button>
                         </form>
-                        <form action="{{ route('attendance_reject', $attendance_report->id)}}" method="post" class="mx-0-25">
-                        @csrf
-                        @method('PUT')
-                        <button class="button is-small is-danger" type="submit">Reject</button>
-                        </form>
+
+                        <button class="button is-small is-danger" @click="showModal('reject-{{$attendance_report->id}}')">
+                            Tolak
+                        </button>
+                        
+                        <modal :name="'reject-{{$attendance_report->id}}'">
+                            <div class="box p-1" slot="main-content">
+                                <p class="title is-size-6">Tolak Laporan Lembur</p>
+                                <div>
+                                    <form action="{{ route('attendance_reject', $attendance_report->id)}}" method="post" class="mx-0-25">
+                                        @csrf @method('PUT')
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea type="text" class="textarea" name="reject_reason" placeholder="Alasan penolakan"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="is-flex justify-content-end">
+                                            <button class="button is-danger" type="submit">Tolak</button>
+                                            <button type="button" class="ml-0-5 button is-link" @click="hideModal('reject-{{$attendance_report->id}}')">Batal</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </modal>
                     @endif
                 </div>  
             </div>

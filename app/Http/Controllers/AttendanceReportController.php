@@ -62,8 +62,9 @@ class AttendanceReportController extends Controller
         return redirect('/attendance_reports')->with('success', 'AttendanceReport has been approved');
     }
     
-    public function reject($id) {
-        AttendanceReport::whereId($id)->update(['status_id' => 3]);
+    public function reject(Request $request, $id) {
+        $reject_reason = $request['reject_reason'];
+        AttendanceReport::whereId($id)->update(['status_id' => 3, 'reject_reason' => $reject_reason]);
         return redirect('/attendance_reports')->with('success', 'AttendanceReport has been rejected');
     }
 
