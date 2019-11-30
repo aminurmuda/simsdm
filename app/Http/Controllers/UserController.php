@@ -22,12 +22,13 @@ class UserController extends Controller
         if(Auth::user()->role_id == '1') {
             return view('users.index-admin', compact('users'));
         }
-        else if(Auth::user()->role_id == '2') {
-            return view('users.index-employee', compact('users'));
-        }
         else if(Auth::user()->role_id == '4') {
             $employee_statuses = EmployeeStatus::all();
             return view('users.index-department-manager', compact('users', 'employee_statuses'));
+        } 
+
+        else {
+            return view('unauthorized');
         }
     }
 

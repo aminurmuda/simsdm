@@ -7,6 +7,10 @@
         
         <div class="is-flex justify-content-between">
             <h1 class="title">Project Details</h1>
+            <div>
+                <a href="{{ route('projects.edit',$project->id)}}" class="button is-primary">Ubah</a>
+                <a href="/projects/{{$project->id}}/assign-member" class="button is-info">Tambah Anggota Proyek</a>
+            </div>
         </div>
         <div class="box">
             <div class="columns mt">

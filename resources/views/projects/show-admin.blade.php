@@ -7,6 +7,16 @@
         
         <div class="is-flex justify-content-between">
             <h1 class="title">Project Details</h1>
+            <div>
+                <!-- can edit if manager of this division or has admin role (role with id 1) -->
+                @if(Auth::user()->id == $project->manager_id || Auth::user()->role_id == 1)            
+                <a href="{{ route('projects.edit',$project->id)}}" class="button is-primary">Ubah</a>
+                <a href="/projects/{{$project->id}}/assign-member" class="button is-info">Tambah Anggota Proyek</a>
+                @endif
+                @if(Auth::user()->role_id == 1 || (!$project->manager_id && Auth::user()->role_id == 4 && Auth::user()->department_id == $project->department_id))
+                <a href="/projects/{{$project->id}}/assign-manager" class="button is-link">Assign Project Manager</a>
+                @endif
+            </div>
         </div>
         <div class="box">
             <div class="columns mt">

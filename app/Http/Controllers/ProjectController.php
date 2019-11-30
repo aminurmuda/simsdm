@@ -42,9 +42,13 @@ class ProjectController extends Controller
         
         // Project Manager
         else if(Auth::user()->role_id == '5') {
-            $projects = Project::with('users')->with('manager')->get();
+            $projects = Project::where('manager_id',Auth::user()->id)->get();
             return view('projects.index-project-manager', compact('projects'));
         } 
+
+        else {
+            return view('unauthorized');
+        }
     }
     
     public function create() {
@@ -71,12 +75,36 @@ class ProjectController extends Controller
     }
 
     public function show($id) {
-        $project = Project::findOrFail($id);
-        // $project_members = RequestEmployee::where('project_id', '=', $id)
-        //     ->where('status_id', '=', '2') // ketika request sudah diterima
-        //     ->with('user')->get();
-        $project_members = ProjectsUsers::with('user')->where('project_id', '=', $id)->get();
-        return view('projects.show', compact('project', 'project_members'));
+        if(Auth::user()->role_id == '1') {
+            $project = Project::findOrFail($id);
+            $project_members = ProjectsUsers::with('user')->where('project_id', '=', $id)->get();
+            return view('projects.show-admin', compact('project', 'project_members'));
+        } 
+        
+        else if(Auth::user()->role_id == '3') {
+            $project = Project::findOrFail($id);
+            $project_members = ProjectsUsers::with('user')->where('project_id', '=', $id)->get();
+            return view('projects.show-division-manager', compact('project', 'project_members'));
+        } 
+
+        else if(Auth::user()->role_id == '4') {
+            $project = Project::findOrFail($id);
+            $project_members = ProjectsUsers::with('user')->where('project_id', '=', $id)->get();
+            return view('projects.show-department-manager', compact('project', 'project_members'));
+        } 
+
+        else if(Auth::user()->role_id == '5') {
+            $project = Project::findOrFail($id);
+            $project_members = ProjectsUsers::with('user')->where('project_id', '=', $id)->get();
+            return view('projects.show-project-manager', compact('project', 'project_members'));
+        } 
+
+        else {
+            $project = Project::findOrFail($id);
+            $project_members = ProjectsUsers::with('user')->where('project_id', '=', $id)->get();
+            return view('projects.show', compact('project', 'project_members'));
+        }
+        
     }
 
     public function edit($id) {
@@ -94,7 +122,12 @@ class ProjectController extends Controller
     public function assignMember($id) {
         $project = Project::findOrFail($id);
         $users = User::with(['skills', 'skills.skill'])
-        ->where('department_id', '=', $project->department_id)->get();
+        ->where('department_id', '=', $project->department_id)->get()->all();
+        $existing_project_members = ProjectsUsers::where('project_id',$id)->pluck('user_id')->toArray();
+        $users = array_filter($users, function($user) use($existing_project_members) {
+            return !in_array($user->id, $existing_project_members);
+        });
+        $users = collect(array_values($users));
         return view('projects.assign-member', compact('project', 'users'));
     }
 

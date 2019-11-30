@@ -7,6 +7,11 @@
         
         <div class="is-flex justify-content-between">
             <h1 class="title">Project Details</h1>
+            <div>
+                @if($project->department->division->manager_id == Auth::user()->id)            
+                <a href="{{ route('projects.edit',$project->id)}}" class="button is-primary">Ubah</a>
+                @endif
+            </div>
         </div>
         <div class="box">
             <div class="columns mt">
@@ -72,7 +77,6 @@
                 <div class="column is-2">{{$member->user->department->name}}</div>
                 <div class="column is-4">
                     @if(count($member->user->skills) > 0)
-                        <!-- {{$member->user->skills}} -->
                         @foreach($member->user->skills as $skill)
                             {{$skill->skill->name}},
                         @endforeach
