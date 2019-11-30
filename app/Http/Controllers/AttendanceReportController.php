@@ -23,19 +23,13 @@ class AttendanceReportController extends Controller
             return view('attendance_reports.index', compact('attendance_reports'));
         }
         
-        else if(Auth::user()->role_id == '3') {
-            $attendance_reports = AttendanceReport::where('user_id', '=', Auth::user()->id)->get();
-            return view('attendance_reports.index', compact('attendance_reports'));
+        else if(Auth::user()->role_id == '5') {
+            $attendance_reports = AttendanceReport::all();
+            return view('attendance_reports.index-project-manager', compact('attendance_reports'));
         }
 
-        else if(Auth::user()->role_id == '4') {
-            $attendance_reports = AttendanceReport::all();
-            return view('attendance_reports.index', compact('attendance_reports'));
-        }
-        
-        else if(Auth::user()->role_id == '5') {
-            $attendance_reports = AttendanceReport::where('user_id', '=', Auth::user()->id)->get();
-            return view('attendance_reports.index-project-manager', compact('attendance_reports'));
+        else {
+            return view('unauthorized');
         }
     }
     

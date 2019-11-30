@@ -12,18 +12,22 @@ class PaidLeaveController extends Controller
     public function index() {
         if(Auth::user()->role_id == '1') {
             $paid_leaves = PaidLeave::all();
-            return view('paid_leaves.index', compact('paid_leaves'));
+            return view('paid_leaves.index-admin', compact('paid_leaves'));
         } 
 
-        else if(Auth::user()->role_id == '4') {
-            $paid_leaves = PaidLeave::all();
-            return view('paid_leaves.index-project-manager', compact('paid_leaves'));
+        else if(Auth::user()->role_id == '2') {
+            $paid_leaves = PaidLeave::where('user_id', Auth::user()->id)->get();
+            return view('paid_leaves.index', compact('paid_leaves'));
         } 
 
         else if(Auth::user()->role_id == '5') {
             $paid_leaves = PaidLeave::all();
             return view('paid_leaves.index-project-manager', compact('paid_leaves'));
         } 
+        
+        else {
+            return view('unauthorized');
+        }
     }
     
     public function create() {

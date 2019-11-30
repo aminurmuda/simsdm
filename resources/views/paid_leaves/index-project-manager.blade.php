@@ -31,8 +31,9 @@
                 <div class="column is-1">{{$paid_leave->status->name}}</div>
                 <div class="column is-2 is-flex">
                     <a href="/paid_leaves/{{$paid_leave->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
+                    
                     @if($paid_leave->status_id == 3)
-                    <button class="button is-small is-danger" @click="showModal('reject-reason-{{$paid_leave->id}}')">
+                    <button class="button is-small is-primary" @click="showModal('reject-reason-{{$paid_leave->id}}')">
                         Lihat Alasan Penolakan
                     </button>
                     <modal :name="'reject-reason-{{$paid_leave->id}}'">

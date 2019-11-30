@@ -32,7 +32,7 @@
                 <div class="column is-1">{{ lembur($attendance_report->clock_in, $attendance_report->clock_out) }}</div>
                 <div class="column is-1">{{ $attendance_report->status->name }}</div>
                 <div class="column is-2 is-flex">
-                    @if(Auth::user()->role_id == '1' || Auth::user()->role_id == '2')
+                    @if($attendance_report->status_id == 1)
                         <button class="button is-small is-danger" @click="showModal('delete-{{$attendance_report->id}}')">
                             Hapus
                         </button>

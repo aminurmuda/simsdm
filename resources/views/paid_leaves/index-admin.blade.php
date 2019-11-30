@@ -30,7 +30,6 @@
                 <div class="column is-2">{{$paid_leave->status->name}}</div>
                 <div class="column is-2">{{$paid_leave->reason}}</div>
                 <div class="column is-2 is-flex">
-                    
                     <a href="/paid_leaves/{{$paid_leave->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
                     
                     @if($paid_leave->status_id == 3)
@@ -47,7 +46,7 @@
                             </div>
                         </modal>
                     @endif
-                
+                    
                     @if($paid_leave->status_id == 1)
                         <form action="{{ route('paid_leaves.destroy', $paid_leave->id)}}" method="post" class="mx-0-25">
                         @csrf
@@ -55,7 +54,6 @@
                         <button class="button is-small is-danger" type="submit">Hapus</button>
                         </form>
                     @endif
-                    
                 </div>  
             </div>
             @endforeach

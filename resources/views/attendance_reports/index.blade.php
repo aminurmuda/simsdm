@@ -32,35 +32,24 @@
                 <div class="column is-1">{{ lembur($attendance_report->clock_in, $attendance_report->clock_out) }}</div>
                 <div class="column is-1">{{ $attendance_report->status->name }}</div>
                 <div class="column is-2 is-flex">
-                    @if(Auth::user()->role_id == '1' || Auth::user()->role_id == '2')
-                        <form action="{{ route('attendance_reports.destroy', $attendance_report->id)}}" method="post" class="mx-0-25">
-                            @csrf
-                            @method('DELETE')
-                            <button class="button is-small is-danger" type="button" @click="showModal('delete-{{$attendance_report->id}}')">
-                                Hapus
-                            </button>
-                            
-                            <modal modal-name="delete-{{$attendance_report->id}}">
-                                <template v-slot:header>
-                                    Haha
-                                </template>
-                                <template v-slot:footer>
-                                <button class="button is-small is-danger" type="submit">Hapus</button>
-                                </template>
-                            <modal/>
-                        </form>
-                    @endif
                     @if($attendance_report->status_id == 1)
-                        <form action="{{ route('attendance_approve', $attendance_report->id)}}" method="post" class="mx-0-25">
-                        @csrf
-                        @method('PUT')
-                        <button class="button is-small is-success" type="submit">Approve</button>
-                        </form>
-                        <form action="{{ route('attendance_reject', $attendance_report->id)}}" method="post" class="mx-0-25">
-                        @csrf
-                        @method('PUT')
-                        <button class="button is-small is-link" type="submit">Reject</button>
-                        </form>
+                        <button class="button is-small is-danger" @click="showModal('delete-{{$attendance_report->id}}')">
+                            Hapus
+                        </button>
+                        
+                        <modal :name="'delete-{{$attendance_report->id}}'">
+                            <div class="box p-1" slot="main-content">
+                                <p class="title is-size-6">Hapus</p>
+                                <p class="is-6 mb-2">Anda yakin ingin menghapus?</p>
+                                <div class="is-flex justify-content-end">
+                                    <form action="{{ route('attendance_reports.destroy', $attendance_report->id)}}" method="post" class="mx-0-25">
+                                        @csrf @method('DELETE')
+                                        <button type="submit" class="button is-danger">Hapus</button>
+                                    </form>
+                                    <button class="ml-0-5 button is-link" @click="hideModal('delete-{{$attendance_report->id}}')">Batal</button>
+                                </div>
+                            </div>
+                        </modal>
                     @endif
                 </div>  
             </div>
