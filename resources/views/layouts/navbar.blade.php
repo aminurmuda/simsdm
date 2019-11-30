@@ -4,7 +4,7 @@
     <nav style="position:fixed;width:100%;" class="navbar box p-0" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item" href="/">
+                <a class="navbar-item" href="/dashboard">
                 <img src="/images/logo.jpg">
                 </a>
 
