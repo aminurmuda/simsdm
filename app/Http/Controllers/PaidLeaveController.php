@@ -20,9 +20,9 @@ class PaidLeaveController extends Controller
             return view('paid_leaves.index', compact('paid_leaves'));
         } 
 
-        else if(Auth::user()->role_id == '5') {
+        else if(Auth::user()->role_id == '4') {
             $paid_leaves = PaidLeave::all();
-            return view('paid_leaves.index-project-manager', compact('paid_leaves'));
+            return view('paid_leaves.index-department-manager', compact('paid_leaves'));
         } 
         
         else {
