@@ -71560,9 +71560,7 @@ var render = function() {
                   _c("span", {
                     domProps: { textContent: _vm._s(skill.level) }
                   }),
-                  _c("i", { staticClass: "material-icons has-text-warning" }, [
-                    _vm._v("star")
-                  ])
+                  _c("i", { staticClass: "has-text-warning fa fa-star" })
                 ]
               )
             ]

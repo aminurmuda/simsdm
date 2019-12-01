@@ -18,7 +18,7 @@
                         <span v-text="skill.skill.name"></span>
                     </button>
                     <div class="ml-0-5 mr-1 is-flex align-items-center justify-content-center">
-                        <span v-text="skill.level"></span><i class="material-icons has-text-warning">star</i>
+                        <span v-text="skill.level"></span><i class="has-text-warning fa fa-star"></i>
                     </div>
                 </div>
             </div>

@@ -82,7 +82,7 @@
                     <button class="button is-link">{{$user_skill->skill->name}}</button>
                     <div class="ml-1 is-flex align-items-center">
                         @for ($i = 0; $i < $user_skill->level; $i++)
-                        <i class="material-icons has-text-warning">star</i>
+                        <i class="has-text-warning fa fa-star"></i>
                         @endfor
                     </div>
                     @if(Auth::user()->role_id == 1)
