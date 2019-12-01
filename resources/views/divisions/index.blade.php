@@ -11,6 +11,7 @@
             <a href="/divisions/create" class="button is-success">Buat</a>
         </div>
         @endif
+        @if(count($divisions) > 0)
         <div class="box mt-1">
             <div class="columns is-hcentered">
                 <div class="column is-2 has-text-weight-bold">Nama</div>        
@@ -35,6 +36,11 @@
             </div>
             @endforeach
         </div>
+        @else
+            <div class="my-1 px-2 py-4 has-text-centered has-text-grey-light">
+                Belum ada entri data
+            </div>    
+        @endif
     </div>
     
 @endsection
