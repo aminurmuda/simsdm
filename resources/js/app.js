@@ -19,12 +19,15 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 import vSelect from 'vue-select'
+    
 // import VueSidebarMenu from 'vue-sidebar-menu'
 // import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 // Vue.use(VueSidebarMenu)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('welcome', require('./components/Welcome.vue').default);
+Vue.component('dashboard', require('./components/Dashboard.vue').default);
+Vue.component('chartjs', require('./components/Chartjs.vue').default);
 Vue.component('modal', require('./components/Modal.vue').default);
 Vue.component('sidebar', require('./components/Sidebar.vue').default);
 Vue.component('sidebar-menu', require('./components/sidebar/SidebarMenu.vue').default);

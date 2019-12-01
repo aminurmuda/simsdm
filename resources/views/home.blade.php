@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('page-title', 'Home')
 @section('content')
-<div style="padding-left:11rem;" class="pr-2">
+<div class="container-custom">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,6 +14,10 @@
             </div>
         </div>
     </div>
+
+    <!-- <div class="box mt-2">
+        <dashboard :requests="{{$requests}}"></dashboard>
+    </div> -->
 
     <div class="mt-2 box">
         Saat ini anda memiliki:<br>
@@ -30,7 +34,14 @@
             <li>
             {{$requests}} request peminjaman karyawan
             </li>
+            <li>
+            {{$paid_leaves}} pengajuan cuti
+            </li>
+            <li>
+            {{$attendance_reports}} pengajuan lembur
+            </li>
         </ul>
     </div>
 </div>
 @endsection
+

@@ -27,6 +27,7 @@
     "dependencies": {
         "bulma": "^0.8.0",
         "material-design-icons": "^3.0.1",
+        "vue-bulma-chartjs": "^1.0.5",
         "vue-select": "^3.3.0",
         "vue-sidebar-menu": "^4.4.3"
     }
