@@ -50,6 +50,19 @@
                     </div>
                 </div>
 
+                <div class="field">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="department_id">
+                                <option value="" disabled=true selected>-- Pilih Departemen --</option>
+                                @foreach($departments as $department)
+                                <option value="{{$department->id}}" {{ $department->id == $user->department_id ? 'selected' : '' }}>{{$department->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 <button type="submit" class="button is-primary">Simpan</button>
             </form>
         </div>

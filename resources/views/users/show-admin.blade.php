@@ -7,8 +7,12 @@
         
         <div class="is-flex justify-content-between">
             <h1 class="title">Data Diri</h1>
+            <div class="is-flex justify-content-end">
+                <a href="/users/{{$user->id}}/edit" class="button is-primary">Ubah Data Diri</a>
+                <a href="/users/{{$user->id}}/add-skill" class="button is-link ml-0-5">Tambah Skill</a>
+            </div>
         </div>
-        <div class="box mt-2">
+        <div class="box">
             <!-- can edit if their own profile or has admin role (role with id 1) -->
             <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Nama</div>

@@ -22,7 +22,13 @@
                 <div class="column is-2">{{ $request->project->name }}</div>        
                 <div class="column is-2">{{ $request->project->address }}</div>        
                 <div class="column is-1">{{ $request->project->customer->company_name }}</div>        
-                <div class="column is-1">{{ $request->project->manager->name }}</div>        
+                <div class="column is-1">
+                    @if($request->project->manager_id)
+                        {{ $request->project->manager->name }}
+                    @else 
+                        <span class="has-text-grey-lighter">Manager belum diassign</span>
+                    @endif
+                </div>   
                 <div class="column is-1">{{ tanggal($request->end_date) }}</div>        
                 <div class="column is-1">{{ $request->role }}</div>       
                 <div class="column is-1">{{ $request->project->department->name }}</div>       
@@ -47,8 +53,6 @@
                     @if($request->status_id == 2)
                         <form action="{{ route('request_approve_by_employee', $request->id) }}" method="post" class="mx-0-25">
                             @csrf @method('PUT')
-                            <input style="display:none;" type="text" name="project_id" value="{{$request->project->id}}">
-                            <input style="display:none;" type="text" name="user_id" value="{{Auth::user()->id}}">
                             <button class="button is-small is-success" type="submit">Terima</button>
                         </form>
 

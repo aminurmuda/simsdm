@@ -7,8 +7,12 @@
         
         <div class="is-flex justify-content-between">
             <h1 class="title">Data Diri</h1>
+            <div class="is-flex justify-content-end">
+                <a href="/users/{{$user->id}}/edit" class="button is-primary">Ubah Data Diri</a>
+                <a href="/users/{{$user->id}}/add-skill" class="button is-link ml-0-5">Tambah Skill</a>
+            </div>
         </div>
-        <div class="box mt-2">
+        <div class="box">
             <!-- can edit if their own profile or has admin role (role with id 1) -->
             <div class="columns">
                 <div class="column is-2 has-text-weight-bold">Nama</div>
@@ -81,13 +85,11 @@
                         <i class="material-icons has-text-warning">star</i>
                         @endfor
                     </div>
-                    @if(Auth::user()->role_id == 1)
-                        <form action="{{ route('delete_skill', $user_skill->id)}}" method="post" class="mx-0-25">
-                            @csrf
-                            @method('DELETE')
-                            <button class="button is-small is-danger" type="submit">Hapus</button>
-                        </form>
-                    @endif
+                    <form action="{{ route('delete_skill', $user_skill->id)}}" method="post" class="mx-0-25">
+                        @csrf
+                        @method('DELETE')
+                        <button class="button is-small is-danger" type="submit">Hapus</button>
+                    </form>
                 </div>
                 @endforeach
             @else

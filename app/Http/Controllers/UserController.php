@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index() {
-        $users = User::all();
+        $users = User::where('id', '!=', 1)->get();
         if(Auth::user()->role_id == '1') {
             return view('users.index-admin', compact('users'));
         }
@@ -44,31 +44,46 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'role_id' => 'required',
-            'department_id' => 'required',
             ]);
-            
             $name = $validatedData['name'];
             $email = $validatedData['email'];
             $password = Hash::make($validatedData['password']);
             $role_id = $validatedData['role_id'];
-            $department_id = $validatedData['department_id'];
+            if($request['department_id']) {
+                $department_id = $request['department_id'];
+            } else {
+                $department_id = null;
+            }
             $status_id = 1;
             $data = array('name' =>$name, 'email' => $email, 'password' => $password, 'role_id' => $role_id, 'department_id' => $department_id, 'status_id' => $status_id);
 
         $user = User::create($data);
         $role_list = RoleList::create(['user_id' => $user->id, 'role_id' => $role_id]); //default role as an employee
+        $role_list = RoleList::updateOrCreate(['user_id' => $user->id, 'role_id' => 2]); //default role as an employee
         return redirect('/users')->with('success', 'Users has been created successfully');
     }
 
     public function show($id) {
         $user = User::find($id);
-        $user_skills = SkillsUsers::where('user_id', '=', $id)->with('skill')->get();
-        return view('users.show', compact('user','user_skills'));
+        if(Auth::user()->role_id == '1') {
+            $user_skills = SkillsUsers::where('user_id', '=', $id)->with('skill')->get();
+            return view('users.show-admin', compact('user','user_skills'));
+        } 
+        else if(Auth::user()->role_id == '2' && Auth::user()->id == $id) {
+            $user_skills = SkillsUsers::where('user_id', '=', $id)->with('skill')->get();
+            return view('users.show-employee', compact('user','user_skills'));
+        } 
+        else  {
+            $user_skills = SkillsUsers::where('user_id', '=', $id)->with('skill')->get();
+            return view('users.show', compact('user','user_skills'));
+        } 
+        
     }
 
     public function edit($id) {
         $user = User::findOrFail($id);
-        return view('users.edit', compact('user'));
+        $departments = Department::all();
+        return view('users.edit', compact('user', 'departments'));
     }
 
     public function update(Request $request, $id) {
@@ -79,6 +94,7 @@ class UserController extends Controller
             'address' => 'required|max:255',
             'birth_place' => 'required|max:255',
             'birth_date' => 'required',
+            'department_id' => 'required'
         ]);
         User::whereId($id)->update($validatedData);
 

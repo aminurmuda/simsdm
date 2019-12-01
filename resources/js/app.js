@@ -18,6 +18,7 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import vSelect from 'vue-select'
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('welcome', require('./components/Welcome.vue').default);
@@ -26,6 +27,9 @@ Vue.component('change-role', require('./components/ChangeRole.vue').default);
 Vue.component('navbar', require('./components/Navbar.vue').default);
 Vue.component('assign-member', require('./components/AssignMember.vue').default);
 Vue.component('assign-member-item', require('./components/AssignMemberItem.vue').default);
+Vue.component('request-employee', require('./components/RequestEmployee.vue').default);
+Vue.component('request-employee-item', require('./components/RequestEmployeeItem.vue').default);
+Vue.component('v-select', vSelect);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,6 +38,7 @@ Vue.component('assign-member-item', require('./components/AssignMemberItem.vue')
  */
 
 Event = new Vue()
+
 
 const app = new Vue({
     el: '#app',

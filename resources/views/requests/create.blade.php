@@ -5,7 +5,12 @@
 
     <div class="container">
         <h1 class="title">Tambah Request Karyawan</h1>
-        <div class="box">
+
+        <div>
+            <request-employee :skills="{{$skills}}" :statuses="{{$statuses}}" :projects="{{$projects}}" :types="{{$types}}"></request-employee>
+        </div>
+
+        <!-- <div class="box">
             <form method="post" action="{{ route('request_employees.store') }}">
                 @csrf
                 <div class="field">
@@ -64,7 +69,7 @@
 
                 <button type="submit" class="button is-primary">Buat</button>
             </form>
-        </div>
+        </div> -->
     </div>
     
 @endsection

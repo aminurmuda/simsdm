@@ -44,10 +44,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/projects/{id}/store-assign-member', 'ProjectController@storeAssignMember');
     
     Route::resource('/request_employees', 'RequestEmployeeController')->only(['index', 'create', 'destroy', 'store']);
+    Route::put('/request_employees/{id}/store-request-employees', ['as' => 'request_approve_by_manager', 'uses' => 'RequestEmployeeController@storeRequestEmployees']);
     Route::put('/request_employees/{id}/approve_by_manager', ['as' => 'request_approve_by_manager', 'uses' => 'RequestEmployeeController@approve_by_manager']);
     Route::put('/request_employees/{id}/reject_by_manager', ['as' => 'request_reject_by_manager', 'uses' => 'RequestEmployeeController@reject_by_manager']);
     Route::put('/request_employees/{id}/approve_by_employee', ['as' => 'request_approve_by_employee', 'uses' => 'RequestEmployeeController@approve_by_employee']);
     Route::put('/request_employees/{id}/reject_by_employee', ['as' => 'request_reject_by_employee', 'uses' => 'RequestEmployeeController@reject_by_employee']);
+    Route::get('/search_employee', 'RequestEmployeeController@searchEmployee');
     
     
     Route::resource('/users', 'UserController');

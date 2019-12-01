@@ -23,7 +23,11 @@
             @foreach($users as $user)
             <div class="columns is-vcentered">
                 <div class="column is-2">{{$user->name}}</div>        
-                <div class="column is-2">{{$user->department->name}}</div>
+                <div class="column is-2">
+                    @if($user->department_id)
+                        {{$user->department->name}}
+                    @endif
+                </div>
                 <div class="column is-2">{{$user->role->name}}</div>
                 <div class="column is-3">
                 @foreach($user->skills as $skill)
@@ -32,7 +36,11 @@
                 </button>
                 @endforeach
                 </div>
-                <div class="column is-1">{{$user->status->name}}</div>
+                <div class="column is-1">
+                    @if($user->status_id)
+                        {{$user->status->name}}
+                    @endif
+                </div>
                 <div class="column is-2 is-flex">
                 <a href="/users/{{$user->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
                     <a href="{{ route('users.edit',$user->id)}}" class="mx-0-25 button is-small is-success">Ubah</a>
