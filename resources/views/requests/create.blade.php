@@ -26,7 +26,7 @@
                             <select name="requestee_id" id="">
                                 <option value="" disabled=true selected>-- Pilih Karyawan --</option>
                                 @foreach($users as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                                <option value="{{$user->id}}">{{$user->name}} (Departemen {{$user->department->name}})</option>
                                 @endforeach
                             </select>
                         </div>

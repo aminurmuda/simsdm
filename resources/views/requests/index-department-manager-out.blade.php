@@ -11,10 +11,10 @@
         <div class="box mt-1">
             <div class="columns is-hcentered">
                 <div class="column is-1 has-text-weight-bold">Nama Karyawan</div>        
+                <div class="column is-1 has-text-weight-bold">Departemen Asal</div>
                 <div class="column is-1 has-text-weight-bold">Nama Requestor</div>
-                <div class="column is-1 has-text-weight-bold">Nama Proyek</div>        
-                <div class="column is-1 has-text-weight-bold">Customer</div>
-                <div class="column is-1 has-text-weight-bold">Manajer Proyek</div>  
+                <div class="column is-1 has-text-weight-bold">Departemen Peminjam</div>  
+                <div class="column is-1 has-text-weight-bold">Nama Proyek</div> 
                 <div class="column is-1 has-text-weight-bold">Deadline</div>  
                 <div class="column is-1 has-text-weight-bold">Role</div>  
                 <div class="column is-1 has-text-weight-bold">Status Request</div>  
@@ -24,10 +24,10 @@
             @foreach($requests as $request)
             <div class="columns is-vcentered">
                 <div class="column is-1">{{ $request->requestee->name }}</div>        
+                <div class="column is-1">{{ $request->requestee->department->name }}</div>        
                 <div class="column is-1">{{ $request->requestor->name }}</div>        
-                <div class="column is-1">{{ $request->project->name }}</div>        
-                <div class="column is-1">{{ $request->project->customer->company_name }}</div>        
-                <div class="column is-1">{{ $request->project->manager->name }}</div>        
+                <div class="column is-1">{{ $request->requestor->department->name }}</div> 
+                <div class="column is-1">{{ $request->project->name }}</div>      
                 <div class="column is-1">{{ tanggal($request->end_date) }}</div>        
                 <div class="column is-1">{{ $request->role }}</div>       
                 <div class="column is-1">{{ $request->status->name }}</div>       

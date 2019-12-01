@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Department;
 use App\Project;
 use App\ProjectsUsers;
 use App\RequestEmployee;
@@ -19,23 +20,45 @@ class RequestEmployeeController extends Controller
         if(Auth::user()->role_id == '1') { // for admin role
             $requests = RequestEmployee::all();
             return view('requests.index-admin', compact('requests'));
-        } else if(Auth::user()->role_id == '4') { // for department manager role 
-            if($type == 'out') {
-                $requests = RequestEmployee::where('requestor_id', '=', Auth::user()->id)->get();
-                return view('requests.index-department-manager-out', compact('requests'));
-            } else {   // request in when type is null or 'in'
-                $requests = RequestEmployee::where('requestor_id', '=', Auth::user()->id)->get();
-                return view('requests.index-department-manager-in', compact('requests'));
-            }
-        } else { //for employee role
+        } 
+
+
+        else if(Auth::user()->role_id == '2') { //for employee role
             $requests = RequestEmployee::where('requestee_id', '=', Auth::user()->id)->get();
             return view('requests.index', compact('requests'));
+        }
+
+        else if(Auth::user()->role_id == '4') { // for department manager role 
+            $managed_department_id = Department::where('manager_id', Auth::user()->id)->get()->first()->id;
+
+            if($type == 'out') {
+                $requests = RequestEmployee::all();
+                $requests = array_filter($requests->all(), function($request) use($managed_department_id) {
+                    return $request->project->department_id == $managed_department_id;
+                });
+                return view('requests.index-department-manager-out', compact('requests'));
+            } else {   // request in when type is null or 'in'
+                $requests = RequestEmployee::all();
+                $requests = array_filter($requests->all(), function($request) use($managed_department_id) {
+                    return $request->requestee->department_id == $managed_department_id;
+                });
+                return view('requests.index-department-manager-in', compact('requests'));
+            }
+        }
+        
+        else {
+            return view('unauthorized');
         }
     }
 
     public function create()
     {
+        $managed_department_id = Department::where('manager_id', Auth::user()->id)->get()->first()->id;
         $users = User::all();
+        $users = array_filter($users->all(), function($user) use($managed_department_id) {
+            return $user->department_id != $managed_department_id;
+        });
+
         $projects = Project::all();
         $types = RequestType::all();
         return view('requests.create', compact('users','projects','types'));
