@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-custom">
         <h1 class="title">Buat Proyek</h1>
         <div class="box">
             <form method="post" action="{{ route('projects.store') }}">

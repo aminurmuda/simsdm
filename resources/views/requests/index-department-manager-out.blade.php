@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-custom">
         <h1 class="title">Daftar Permintaan Keluar</h1>
         <div class="is-flex justify-content-end">
             <a href="/request_employees/create" class="button is-success">Buat Request Karyawan</a>

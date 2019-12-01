@@ -3,8 +3,7 @@
 
 @section('content')
 
-    <div class="container">
-        
+    <div class="container-custom">
         <div class="is-flex justify-content-between">
             <h1 class="title">Department Details</h1>
             @if(Auth::user()->id == $department->manager_id || Auth::user()->role_id == 1)    

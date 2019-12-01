@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-custom">
         
         <div class="is-flex justify-content-between">
             <h1 class="title">Division Details</h1>

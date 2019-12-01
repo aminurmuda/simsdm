@@ -1,9 +1,6 @@
 <template>
     <div>
         <div class="field is-grouped">
-            <div class="control is-flex align-items-center is-size-7">            
-                Login sebagai
-            </div>
             <div class="control">
                 <div class="select is-small">
                     <select style="border:0px;" v-model="selectedRole" @change="changeRole()">

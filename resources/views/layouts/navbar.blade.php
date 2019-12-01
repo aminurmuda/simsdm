@@ -1,12 +1,12 @@
 <navbar 
     :user="{{ auth()->check() ? Auth::user(): 'asd' }}"
     inline-template>
-    <nav style="position:fixed;width:100%;" class="navbar box p-0" role="navigation" aria-label="main navigation">
-        <div class="container">
+    <nav style="position:fixed;width:100%;" class="navbar box py-0-5" role="navigation" aria-label="main navigation">
+        <div style="margin-left:360px; margin-right:20px;" class="is-flex justify-content-between">
             <div class="navbar-brand">
-                <a class="navbar-item" href="/dashboard">
+                <!-- <a class="navbar-item" href="/dashboard">
                 <img src="/images/logo.jpg">
-                </a>
+                </a> -->
 
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
@@ -16,7 +16,7 @@
             </div>
 
             <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
+                <!-- <div class="navbar-start">
                     <template v-if="!user">
                         <a href="/" class="px-2 navbar-item">Beranda</a>
                     </template>
@@ -42,7 +42,7 @@
                             @include('layouts.navbar-project-manager')
                         </template>
                     </template>
-                </div>
+                </div> -->
                 
                 <div class="navbar-end">
                     @guest
@@ -54,6 +54,7 @@
                         <a class="navbar-item">
                             <change-role :current-role="{{ $current_role }}" :roles="{{$roles}}" :user-props="user"></change-role>
                         </a>
+                        <div style="padding:10px 0; border-right:0.5px solid #cccaca;"></div>
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link" v-text="user.name"></a>
                             <div class="navbar-dropdown py-0">

@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-custom">
         <h1 class="title">Daftar Request Karyawan</h1>
         @if(count($requests) > 0)
             <div class="box mt-1">

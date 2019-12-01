@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-custom">
         <h1 class="title">Daftar Customer</h1>
         <!-- can create if has admin role (role with id 1) -->
         @if(Auth::user()->role_id == 1)

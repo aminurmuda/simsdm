@@ -23,11 +23,11 @@
 </head>
 <body>
     <div id="app">
-    
         @include('layouts.navbar')
-        <main class="py-6">
+        <main style="margin-left: 200px;" class="py-6">
             @yield('content')
         </main>
+        @include('layouts.sidebar')
     </div>
 </body>
 </html>

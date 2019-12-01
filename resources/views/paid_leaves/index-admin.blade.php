@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-custom">
         <h1 class="title">Daftar Cuti</h1>
         <!-- can create if has admin role (role with id 1) -->
         <div class="is-flex justify-content-end">

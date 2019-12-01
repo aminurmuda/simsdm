@@ -91,6 +91,11 @@ class RequestEmployeeController extends Controller
             return $user->department_id != $managed_department_id;
         });
 
+        // $existing_project_members = ProjectsUsers::where('project_id',$id)->pluck('user_id')->toArray();
+        // $users = array_filter($users, function($user) use($existing_project_members) {
+        //     return !in_array($user->id, $existing_project_members);
+        // });
+
         $users = array_values($users);
 
         return response()->json([

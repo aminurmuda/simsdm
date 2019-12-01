@@ -3,10 +3,10 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-custom">
         
         <div class="is-flex justify-content-between">
-            <h1 class="title">Project Details</h1>
+            <h1 class="title">Detail Proyek</h1>
         </div>
         <div class="box">
             <div class="columns mt">

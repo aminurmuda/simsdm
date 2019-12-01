@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-custom">
         <h1 class="title">Daftar Cuti</h1>
         @if(count($paid_leaves) > 0)
             <div class="box mt-1">

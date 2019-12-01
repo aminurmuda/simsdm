@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-custom">
         <h1 class="title">Tambah Skills</h1>
         <div class="box">
             @if ($errors->any())

@@ -26,5 +26,6 @@ class ViewServiceProvider extends ServiceProvider
     {
         // Using class based composers...
         View::composer('layouts.navbar', 'App\Http\View\Composers\NavbarComposer');
+        View::composer('layouts.sidebar', 'App\Http\View\Composers\NavbarComposer');
     }
 }

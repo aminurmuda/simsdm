@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-custom">
         <h1 class="title">Ajukan Cuti</h1>
         <div class="box">
             <form method="post" action="{{ route('paid_leaves.store') }}">

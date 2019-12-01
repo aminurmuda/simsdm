@@ -116,19 +116,15 @@ import vSelect from 'vue-select'
                     let skillIds = this.selectedSkills.map(skill => skill.id)
                     let skill = skillIds.join(';')
                     query += '&skill=' + skill
-                    console.log(query)
                 }
 
                 axios.get(url + query).then((result) => {
-                    console.log('result', result.data)
                     this.employees = _.uniqBy(result.data.users, function (user) {
                         return user.id;
                     });
-                    // window.location.href = '/projects/' + this.project.id
                 }).catch((error) => {
                     console.log(error)
                 })
-                // window.location.href = url + query
             },
             fillDate() {
                 this.startDate = this.selectedProject.start_date
@@ -147,7 +143,7 @@ import vSelect from 'vue-select'
                 axios.put('/request_employees/' + this.selectedProject.id + '/store-request-employees', form)
                 .then((result) => {
                     console.log(result.data)
-                    // window.location.href = '/request_employees'
+                    window.location.href = '/request_employees'
                 }).catch((error) => {
                     console.log(error)
                 })
