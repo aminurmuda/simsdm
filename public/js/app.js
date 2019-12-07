@@ -2535,23 +2535,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Sidebar",
   props: {
     currentRole: {
       type: Object,
-      required: true
+      required: false,
+      "default": {
+        id: 0,
+        name: 'Guest'
+      }
     },
     userProps: {
       type: Object,
-      required: true
+      required: false
     }
   },
   data: function data() {
     return {
       selectedRole: null,
       roles: [{
+        'role_id': 0,
+        'menu': [{
+          header: true,
+          title: 'SIMSDM',
+          icon: 'fa fa-user',
+          hiddenOnCollapse: true
+        }, {
+          href: '/',
+          title: 'Beranda',
+          icon: 'fa fa-home'
+        }, {
+          href: '/login',
+          title: 'Login',
+          icon: 'fa fa-sign-in-alt'
+        }]
+      }, {
         'role_id': 1,
         'menu': [{
           header: true,
@@ -2730,12 +2749,13 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _.forEach(this.roles, function (role) {
-      if (role['role_id'] === _this.currentRole.id) {
-        _this.selectedRole = role['menu'];
-      }
-    }); // this.selectedthis.role[0]['menu']
-
+    if (this.currentRole && this.roles) {
+      _.forEach(this.roles, function (role) {
+        if (role['role_id'] === _this.currentRole.id) {
+          _this.selectedRole = role['menu'];
+        }
+      });
+    }
   },
   methods: {}
 });
@@ -71596,7 +71616,13 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "main" },
-    [_c("sidebar-menu", { attrs: { menu: _vm.selectedRole, width: "340px" } })],
+    [
+      _vm.selectedRole
+        ? _c("sidebar-menu", {
+            attrs: { menu: _vm.selectedRole, width: "340px" }
+          })
+        : _vm._e()
+    ],
     1
   )
 }

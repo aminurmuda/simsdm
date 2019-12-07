@@ -1,7 +1,6 @@
 <template>
     <div class="main" v-cloak>
-        <sidebar-menu :menu="selectedRole" :width="'340px'">
-        </sidebar-menu>
+        <sidebar-menu :menu="selectedRole" :width="'340px'" v-if="selectedRole"></sidebar-menu>
     </div>
 </template>
 
@@ -12,17 +11,42 @@
         props: {
             currentRole: {
                 type: Object,
-                required: true
+                required: false,
+                default: {
+                    id: 0,
+                    name: 'Guest'
+                }
             },
             userProps: {
                 type: Object,
-                required: true
+                required: false
             }
         },
         data() {
             return {
                 selectedRole: null,
                 roles: [
+                    {
+                        'role_id': 0,
+                        'menu': [
+                            {
+                                header: true,
+                                title: 'SIMSDM',
+                                icon: 'fa fa-user',
+                                hiddenOnCollapse: true
+                            },
+                            {
+                                href: '/',
+                                title: 'Beranda',
+                                icon: 'fa fa-home'
+                            },
+                            {
+                                href: '/login',
+                                title: 'Login',
+                                icon: 'fa fa-sign-in-alt',
+                            },
+                        ]
+                    },
                     {
                         'role_id': 1,
                         'menu': [
@@ -256,12 +280,13 @@
             }
         },
         mounted() {
-            _.forEach(this.roles, (role) => {
-                if(role['role_id'] === this.currentRole.id) {
-                    this.selectedRole = role['menu']
-                }
-            })
-            // this.selectedthis.role[0]['menu']
+            if(this.currentRole && this.roles) {
+                _.forEach(this.roles, (role) => {
+                    if(role['role_id'] === this.currentRole.id) {
+                        this.selectedRole = role['menu']
+                    }
+                })
+            }
         },
         methods: {
         }
