@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('page-title', 'Login')
 @section('content')
-<div class="container is-flex justify-content-center">
-    <div class="">
+<div style="height:100%;" class="is-flex justify-content-center">
+    <div style="width:600px;margin-top:200px;">
         
         <div class="card">
             <div class="card-header">

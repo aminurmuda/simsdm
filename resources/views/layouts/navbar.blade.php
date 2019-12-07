@@ -46,10 +46,10 @@
                 
                 <div class="navbar-end">
                     @guest
-                        <a class="navbar-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <!-- <a class="navbar-item" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @if (Route::has('register'))
                             <a class="navbar-item" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        @endif
+                        @endif -->
                     @else
                         <a class="navbar-item">
                             <change-role :current-role="{{ $current_role }}" :roles="{{$roles}}" :user-props="user"></change-role>
