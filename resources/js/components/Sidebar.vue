@@ -37,7 +37,7 @@
                             },
                             {
                                 href: '/',
-                                title: 'beranda',
+                                title: 'Beranda',
                                 icon: 'fa fa-home'
                             },
                             {
