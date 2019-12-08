@@ -4,6 +4,6 @@
 @else
     <sidebar 
     :current-role="{{ $current_role }}" 
-    :user-props="{{Auth::user()}}"
+    :user-props="{{ $user }}"
     ></sidebar>
 @endif

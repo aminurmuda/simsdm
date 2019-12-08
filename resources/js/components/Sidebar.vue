@@ -12,14 +12,19 @@
             currentRole: {
                 type: Object,
                 required: false,
-                default: {
+                default: () => ({
                     id: 0,
                     name: 'Guest'
-                }
+                }),
             },
             userProps: {
                 type: Object,
-                required: false
+                required: false,
+                default: () => ({
+                    id: 0,
+                    name: 'Guest',
+                    role_id: 0
+                }),
             }
         },
         data() {

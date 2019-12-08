@@ -1,5 +1,5 @@
 <navbar 
-    :user="{{ auth()->check() ? Auth::user(): 'asd' }}"
+    :user="{{ $user }}"
     inline-template>
     <nav style="position:fixed;width:100%;" class="navbar box py-0-5" role="navigation" aria-label="main navigation">
         <div style="margin-left:360px; margin-right:20px;" class="is-flex justify-content-between">
