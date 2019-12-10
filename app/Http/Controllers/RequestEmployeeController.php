@@ -65,7 +65,7 @@ class RequestEmployeeController extends Controller
     public function searchEmployee(Request $request) {
         $skills = Skill::all();
         $statuses = EmployeeStatus::all();
-        $status_id = $request['status_id'];
+        $request_status_id = $request['request_status_id'];
         $skill = $request['skill'];
         $skill_params = explode(";", $skill);
 
@@ -78,13 +78,17 @@ class RequestEmployeeController extends Controller
         }
         
         $users = SkillsUsers::with('user')->whereIn('skill_id', $skill_params)->distinct('user_id')->get();
-        $users = array_filter($users->all(), function($user) use($status_id) {
-            return $user->user->status_id == $status_id;
+        $users = array_filter($users->all(), function($user) use($request_status_id) {
+            if($request_status_id == 1) {
+                return $user->user->status_id == 2;
+            }
+            return $user;
         });
 
         $users = Arr::pluck($users, 'user');
         foreach($users as $user) {
             $user->skills = SkillsUsers::with('skill')->where('user_id', $user->id)->get();
+            $user->department = $user->department;
         }
 
         $users = array_filter($users, function($user) use($managed_department_id) {

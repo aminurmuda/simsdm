@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div style="height:300px;">
-            <chartjs :type="'bar'" :data="requests" :options="options" :width="200" :height="200"></chartjs>
+        <div style="height:400px;">
+            <chartjs :type="'bar'" :data="requests" :options="options" :width="400" :height="400"></chartjs>
         </div>
 
-        <div style="height:300px;">
+        <!-- <div style="height:300px;">
             <chartjs :type="'bar'" :data="paid_leaves" :options="options" :width="200" :height="200"></chartjs>
-        </div>
+        </div> -->
 
         <!-- <div style="height:300px;">
             <chartjs :type="'bar'" :data="requests" :options="options" :width="200" :height="200"></chartjs>
@@ -21,7 +21,6 @@ export default {
       requests: {
           type: Object
       },
-      
       paid_leaves: {
           type: Object
       }

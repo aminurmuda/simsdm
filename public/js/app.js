@@ -2362,6 +2362,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RequestEmployee",
@@ -2385,7 +2414,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      statusId: null,
+      requestStatusId: null,
       selectedSkills: [],
       selectedProject: null,
       selectedType: null,
@@ -2402,8 +2431,8 @@ __webpack_require__.r(__webpack_exports__);
       var url = '/search_employee';
       var query = '?';
 
-      if (this.statusId) {
-        query += 'status_id=' + this.statusId;
+      if (this.selectedType) {
+        query += 'request_status_id=' + this.selectedType;
       }
 
       if (this.selectedSkills.length > 0) {
@@ -2432,7 +2461,7 @@ __webpack_require__.r(__webpack_exports__);
         'start_date': this.startDate,
         'end_date': this.endDate,
         'project_id': this.selectedProject.id,
-        'type_id': this.selectedType == 1 ? 2 : 1,
+        'type_id': this.selectedType,
         'role': 'required',
         'selected_employees': this.selectedEmployees
       };
@@ -2457,6 +2486,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -21342,7 +21374,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.vs__open-indicator {\n  fill: #3490dc !important;\n}\n.vs__deselect {\n    fill: red !important;\n}\n.vs__selected {\n    background-color: hsl(0, 0%, 98%);\n    padding: 0.5rem;\n    margin: 0.5rem 0.2rem 0.2rem 0.2rem;\n}\n", ""]);
+exports.push([module.i, "\n.vs__open-indicator {\nfill: #3490dc !important;\n}\n.vs__deselect {\n    fill: red !important;\n}\n.vs__search {\n    color: lightgrey;\n}\n.vs__selected {\n    background-color: hsl(0, 0%, 98%);\n    padding: 0.5rem;\n    margin: 0.5rem 0.2rem 0.2rem 0.2rem;\n}\n", ""]);
 
 // exports
 
@@ -71008,32 +71040,15 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticStyle: { height: "300px" } },
+      { staticStyle: { height: "400px" } },
       [
         _c("chartjs", {
           attrs: {
             type: "bar",
             data: _vm.requests,
             options: _vm.options,
-            width: 200,
-            height: 200
-          }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticStyle: { height: "300px" } },
-      [
-        _c("chartjs", {
-          attrs: {
-            type: "bar",
-            data: _vm.paid_leaves,
-            options: _vm.options,
-            width: 200,
-            height: 200
+            width: 400,
+            height: 400
           }
         })
       ],
@@ -71158,7 +71173,7 @@ var render = function() {
         _c("div", { staticClass: "control" }, [
           _c("label", { staticClass: "label" }, [
             _vm._v(
-              "\n                    Pilih Jenis Karyawan\n                "
+              "\n                    Pilih Jenis Permintaan\n                "
             )
           ]),
           _vm._v(" "),
@@ -71170,8 +71185,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.statusId,
-                    expression: "statusId"
+                    value: _vm.selectedType,
+                    expression: "selectedType"
                   }
                 ],
                 on: {
@@ -71184,7 +71199,7 @@ var render = function() {
                         var val = "_value" in o ? o._value : o.value
                         return val
                       })
-                    _vm.statusId = $event.target.multiple
+                    _vm.selectedType = $event.target.multiple
                       ? $$selectedVal
                       : $$selectedVal[0]
                   }
@@ -71194,16 +71209,13 @@ var render = function() {
                 _c(
                   "option",
                   { attrs: { value: "null", disabled: "true", selected: "" } },
-                  [_vm._v("-- Pilih Status Karyawan --")]
+                  [_vm._v("-- Pilih Tipe Request --")]
                 ),
                 _vm._v(" "),
-                _vm._l(_vm.statuses, function(status) {
+                _vm._l(_vm.types, function(type) {
                   return _c("option", {
-                    key: status.id,
-                    domProps: {
-                      value: status.id,
-                      textContent: _vm._s(status.name)
-                    }
+                    key: type.id,
+                    domProps: { value: type.id, textContent: _vm._s(type.name) }
                   })
                 })
               ],
@@ -71219,11 +71231,16 @@ var render = function() {
           { staticClass: "control" },
           [
             _c("label", { staticClass: "label" }, [
-              _vm._v("\n                Pilih Skill\n            ")
+              _vm._v("\n                    Pilih Skill\n                ")
             ]),
             _vm._v(" "),
             _c("v-select", {
-              attrs: { multiple: "", label: "name", options: _vm.skills },
+              attrs: {
+                multiple: "",
+                label: "name",
+                placeholder: "Skill yang dicari",
+                options: _vm.skills
+              },
               model: {
                 value: _vm.selectedSkills,
                 callback: function($$v) {
@@ -71255,19 +71272,27 @@ var render = function() {
       ? _c(
           "div",
           { staticClass: "box mt-1" },
-          _vm._l(_vm.employees, function(user) {
-            return _c("request-employee-item", {
-              key: user.id,
-              attrs: { "data-user": user }
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.employees, function(user) {
+              return _c("request-employee-item", {
+                key: user.id,
+                attrs: { "data-user": user }
+              })
             })
-          }),
-          1
+          ],
+          2
         )
       : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "box mt-1" }, [
       _c("div", { staticClass: "field" }, [
         _c("div", { staticClass: "control" }, [
+          _c("label", { staticClass: "label" }, [
+            _vm._v("\n                    Pilih Proyek\n                ")
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "select is-fullwidth" }, [
             _c(
               "select",
@@ -71328,6 +71353,12 @@ var render = function() {
         _c("div", { staticClass: "control" }, [
           _c("div", { staticClass: "columns" }, [
             _c("div", { staticClass: "column is-6" }, [
+              _c("label", { staticClass: "label" }, [
+                _vm._v(
+                  "\n                            Tanggal Mulai\n                        "
+                )
+              ]),
+              _vm._v(" "),
               _c("input", {
                 directives: [
                   {
@@ -71352,6 +71383,12 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "column is-6" }, [
+              _c("label", { staticClass: "label" }, [
+                _vm._v(
+                  "\n                            Tanggal Selesai\n                        "
+                )
+              ]),
+              _vm._v(" "),
               _c("input", {
                 directives: [
                   {
@@ -71378,57 +71415,6 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "field" }, [
-        _c("div", { staticClass: "control" }, [
-          _c("div", { staticClass: "select is-fullwidth" }, [
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.selectedType,
-                    expression: "selectedType"
-                  }
-                ],
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.selectedType = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              [
-                _c(
-                  "option",
-                  { attrs: { value: "", disabled: "true", selected: "" } },
-                  [_vm._v("-- Pilih Tipe Request --")]
-                ),
-                _vm._v(" "),
-                _vm._l(_vm.types, function(type) {
-                  return _c("option", {
-                    key: type.id,
-                    attrs: { value: "type.id" },
-                    domProps: { textContent: _vm._s(type.name) }
-                  })
-                })
-              ],
-              2
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
       _c(
         "button",
         {
@@ -71441,7 +71427,39 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "columns", staticStyle: { background: "#D3DCE3" } },
+      [
+        _c("div", {
+          staticClass:
+            "column is-1 is-flex justify-content-center align-items-center"
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "column is-3 has-text-weight-bold" }, [
+          _vm._v("\n                Nama Karyawan\n            ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column is-1 has-text-weight-bold" }, [
+          _vm._v("\n                Departemen\n            ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column is-2 has-text-weight-bold" }, [
+          _vm._v("\n                Role\n            ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column is-4 has-text-weight-bold" }, [
+          _vm._v("\n                Skill\n            ")
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -71527,11 +71545,24 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "column is-2 is-flex align-items-center" }, [
+      _c("div", { staticClass: "column is-3 is-flex align-items-center" }, [
         _c("p", { domProps: { textContent: _vm._s(_vm.user.name) } })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "column is-2" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "column is-1 is-flex align-items-center justify-content-center"
+        },
+        [
+          _c("p", {
+            domProps: { textContent: _vm._s(_vm.user.department.name) }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "column is-2 is-flex align-items-center" }, [
         _c("input", {
           directives: [
             {
@@ -71542,7 +71573,7 @@ var render = function() {
             }
           ],
           staticClass: "input",
-          attrs: { type: "text" },
+          attrs: { type: "text", placeholder: "Isi role" },
           domProps: { value: _vm.role },
           on: {
             keyup: function($event) {
@@ -71569,27 +71600,13 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "button is-small is-info",
+                  staticClass: "button is-small is-info ml-0-5",
                   attrs: { type: "button" }
                 },
                 [
                   _c("span", {
                     domProps: { textContent: _vm._s(skill.skill.name) }
                   })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ml-0-5 mr-1 is-flex align-items-center justify-content-center"
-                },
-                [
-                  _c("span", {
-                    domProps: { textContent: _vm._s(skill.level) }
-                  }),
-                  _c("i", { staticClass: "has-text-warning fa fa-star" })
                 ]
               )
             ]

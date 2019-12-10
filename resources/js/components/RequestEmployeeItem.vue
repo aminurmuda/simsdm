@@ -6,20 +6,23 @@
                     <input type="checkbox" v-model="checked" @change="fillItem()">
                 </label>
             </div>
-            <div class="column is-2 is-flex align-items-center">
+            <div class="column is-3 is-flex align-items-center">
                 <p v-text="user.name"></p>
             </div>
-            <div class="column is-2">
-                <input type="text" class="input" v-model="role" @keyup="fillItem()">
+            <div class="column is-1 is-flex align-items-center justify-content-center">
+                <p v-text="user.department.name"></p>
+            </div>
+            <div class="column is-2 is-flex align-items-center">
+                <input type="text" class="input" v-model="role" @keyup="fillItem()" placeholder="Isi role">
             </div>
             <div class="column is-4 is-flex">
                 <div class="is-flex align-items-center" v-for="skill in user.skills" :key="skill.id">
-                    <button type="button" class="button is-small is-info">
+                    <button type="button" class="button is-small is-info ml-0-5">
                         <span v-text="skill.skill.name"></span>
                     </button>
-                    <div class="ml-0-5 mr-1 is-flex align-items-center justify-content-center">
+                    <!-- <div class="ml-0-5 mr-1 is-flex align-items-center justify-content-center">
                         <span v-text="skill.level"></span><i class="has-text-warning fa fa-star"></i>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>    
