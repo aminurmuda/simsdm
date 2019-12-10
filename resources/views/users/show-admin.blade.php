@@ -79,19 +79,39 @@
             @if(count($user_skills) > 0)
                 @foreach($user_skills as $user_skill)
                 <div class="my-0-5 is-flex">
-                    <button class="button is-link">{{$user_skill->skill->name}}</button>
-                    <div class="ml-1 is-flex align-items-center">
+                    <button class="button is-link">
+                        {{$user_skill->skill->name}}
+                    </button>
+                    @if(Auth::user()->role_id == 1)
+                        <button style="background:transparent;border:0;" @click="showModal('delete-{{$user_skill->id}}')">
+                            <i class="is-size-5 has-text-danger fa fa-window-close"></i>
+                        </button>
+                        
+                        <modal :name="'delete-{{$user_skill->id}}'" v-cloak>
+                            <div class="box p-1" slot="main-content">
+                                <p class="title is-size-6">Hapus Skill</p>
+                                <p class="is-6 mb-2">Anda yakin ingin menghapus skill <b>{{$user_skill->skill->name}}</b></p>
+                                <div class="is-flex justify-content-end">
+                                <form action="{{ route('delete_skill', $user_skill->id)}}" method="post" class="mx-0-25">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="button is-danger" type="submit">
+                                        Hapus
+                                    </button>
+
+                                    
+                                </form>
+                                    <button type="button" class="button is-link" @click="hideModal('delete-{{$user_skill->id}}')">Tutup</button>
+                                </div>
+                            </div>
+                        </modal>
+                    @endif
+                    <!-- <div class="ml-1 is-flex align-items-center">
                         @for ($i = 0; $i < $user_skill->level; $i++)
                         <i class="has-text-warning fa fa-star"></i>
                         @endfor
-                    </div>
-                    @if(Auth::user()->role_id == 1)
-                        <form action="{{ route('delete_skill', $user_skill->id)}}" method="post" class="mx-0-25">
-                            @csrf
-                            @method('DELETE')
-                            <button class="button is-small is-danger" type="submit">Hapus</button>
-                        </form>
-                    @endif
+                    </div> -->
+                    
                 </div>
                 @endforeach
             @else
