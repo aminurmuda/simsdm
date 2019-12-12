@@ -40,11 +40,11 @@
                                 icon: 'fa fa-user',
                                 hiddenOnCollapse: true
                             },
-                            {
-                                href: '/',
-                                title: 'Beranda',
-                                icon: 'fa fa-home'
-                            },
+                            // {
+                            //     href: '/',
+                            //     title: 'Beranda',
+                            //     icon: 'fa fa-home'
+                            // },
                             {
                                 href: '/login',
                                 title: 'Login',

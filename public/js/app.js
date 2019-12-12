@@ -2602,11 +2602,12 @@ __webpack_require__.r(__webpack_exports__);
           title: 'SIMSDM',
           icon: 'fa fa-user',
           hiddenOnCollapse: true
-        }, {
-          href: '/',
-          title: 'Beranda',
-          icon: 'fa fa-home'
-        }, {
+        }, // {
+        //     href: '/',
+        //     title: 'Beranda',
+        //     icon: 'fa fa-home'
+        // },
+        {
           href: '/login',
           title: 'Login',
           icon: 'fa fa-sign-in-alt'
@@ -70880,29 +70881,13 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "button is-small is-info",
+                  staticClass: "button is-small is-info mr-0-5",
                   attrs: { type: "button" }
                 },
                 [
                   _c("span", {
                     domProps: { textContent: _vm._s(skill.skill.name) }
                   })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ml-0-5 mr-1 is-flex align-items-center justify-content-center"
-                },
-                [
-                  _c("span", {
-                    domProps: { textContent: _vm._s(skill.level) }
-                  }),
-                  _c("i", { staticClass: "material-icons has-text-warning" }, [
-                    _vm._v("star")
-                  ])
                 ]
               )
             ]

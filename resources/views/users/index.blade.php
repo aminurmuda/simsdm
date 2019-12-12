@@ -27,7 +27,7 @@
                     @endforeach
                     </div>
                     <div class="column is-3 is-flex">
-                    <a href="/users/{{$user->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
+                        <a href="/users/{{$user->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
                         <a href="{{ route('users.edit',$user->id)}}" class="mx-0-25 button is-small is-success">Ubah</a>
                         <form action="{{ route('users.destroy', $user->id)}}" method="post" class="mx-0-25">
                         @csrf

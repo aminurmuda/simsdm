@@ -89,6 +89,7 @@ class RequestEmployeeController extends Controller
         foreach($users as $user) {
             $user->skills = SkillsUsers::with('skill')->where('user_id', $user->id)->get();
             $user->department = $user->department;
+            $user->projects = $user->projects;
         }
 
         $users = array_filter($users, function($user) use($managed_department_id) {

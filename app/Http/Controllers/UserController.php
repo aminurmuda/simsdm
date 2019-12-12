@@ -24,6 +24,7 @@ class UserController extends Controller
         }
         else if(Auth::user()->role_id == '4') {
             $employee_statuses = EmployeeStatus::all();
+            $users = User::where('id', '!=', 1)->where('department_id','=',Auth::user()->department_id)->get();
             return view('users.index-department-manager', compact('users', 'employee_statuses'));
         } 
 
@@ -54,7 +55,7 @@ class UserController extends Controller
             } else {
                 $department_id = null;
             }
-            $status_id = 1;
+            $status_id = 2;
             $data = array('name' =>$name, 'email' => $email, 'password' => $password, 'role_id' => $role_id, 'department_id' => $department_id, 'status_id' => $status_id);
 
         $user = User::create($data);
@@ -128,6 +129,9 @@ class UserController extends Controller
     public function storeSkill(Request $request, $id) {
         $skill_id = $request['skill_id'];
         $level = $request['level'];
+        if(!$level) {
+            $level = 0;
+        }
         $data = array('user_id' =>$id, 'skill_id' => $skill_id, 'level' => $level);
         SkillsUsers::create($data);
         return redirect('/users/'.$id)->with('success', 'User has been deleted successfully');

@@ -40,14 +40,14 @@
                             @enderror
                         </div>
 
-                        <div class="field">
+                        <!-- <div class="field">
                             <div class="control is-flex align-items-center">
                                 <label class="checkbox">
                                 <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                 {{ __('Remember Me') }}
                                 </label>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="field">
                             <div class="control is-flex align-items-center">
@@ -55,11 +55,11 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                                <!-- @if (Route::has('password.request'))
                                     <a class="ml-0-5 is-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                @endif
+                                @endif -->
                             </div>
                         </div>
                     </form>

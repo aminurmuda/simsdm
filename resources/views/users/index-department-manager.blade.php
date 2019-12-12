@@ -29,6 +29,7 @@
                     </div>
                     <div class="column is-1 is-flex">{{$user->status->name}}</div>  
                     <div class="column is-2 is-flex">
+                        <a href="/users/{{$user->id}}" class="mx-0-25 button is-small is-link">Lihat</a>
                         <button class="button is-small is-success" @click="showModal('change-status{{$user->id}}')">
                             Ubah Status
                         </button>

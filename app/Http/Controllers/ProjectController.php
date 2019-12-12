@@ -122,7 +122,8 @@ class ProjectController extends Controller
     public function assignMember($id) {
         $project = Project::findOrFail($id);
         $users = User::with(['skills', 'skills.skill'])
-        ->where('department_id', '=', $project->department_id)->get()->all();
+        ->where('department_id', '=', $project->department_id)
+        ->where('id', '!=', '1')->get()->all();
         $existing_project_members = ProjectsUsers::where('project_id',$id)->pluck('user_id')->toArray();
         $users = array_filter($users, function($user) use($existing_project_members) {
             return !in_array($user->id, $existing_project_members);
@@ -143,7 +144,7 @@ class ProjectController extends Controller
     }
 
     public function storeAssignMember(Request $request, $id) {
-        $selected_members = $request->input('selected_members');
+        $selected_members = array_values(collect($request->input('selected_members'))->where('user_id', '!=', null)->all());
         try {
             foreach($selected_members as $members){
                 ProjectsUsers::updateOrCreate($members);
@@ -152,7 +153,6 @@ class ProjectController extends Controller
         } catch (Exception $exception){
              return response($exception->getMessage(), $exception->getStatus());
         }
-        // return redirect('/projects/'.$id)->with('success', 'Project has been updated');
     }
 
     public function update(Request $request, $id) {

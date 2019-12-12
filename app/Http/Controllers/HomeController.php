@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Division;
 use App\AttendanceReport;
 use App\Department;
@@ -45,14 +46,15 @@ class HomeController extends Controller
         //     RequestEmployee::where('status_id', 4)->count(),
         //     RequestEmployee::where('status_id', 5)->count()
         // ];
+        // dd($request_statuses);
 
         // $requests = (object) [
         //     'labels' => [
-        //         RequestStatus::where('id', 1)->get(),
-        //         RequestStatus::where('id', 2)->get(),
-        //         RequestStatus::where('id', 3)->get(),
-        //         RequestStatus::where('id', 4)->get(),
-        //         RequestStatus::where('id', 5)->get()
+        //         RequestStatus::find(1)->name,
+        //         RequestStatus::find(2)->name,
+        //         RequestStatus::find(3)->name,
+        //         RequestStatus::find(4)->name,
+        //         RequestStatus::find(5)->name,
         //     ],
         //     'datasets' => [
         //         [
@@ -67,6 +69,7 @@ class HomeController extends Controller
         //         ]
         //     ]
         // ];
+        // dd($requests);
         // $requests = json_encode($requests);
 
         // $paid_leaves_statuses = [
@@ -94,7 +97,10 @@ class HomeController extends Controller
         // ];
         // $paid_leaves = json_encode($paid_leaves);
         // dd($paid_leaves);
-
         return view('home', compact('divisions', 'departments', 'projects', 'requests', 'paid_leaves', 'attendance_reports'));
+    }
+
+    public function test() {
+        return view('test');
     }
 }
