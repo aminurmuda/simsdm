@@ -1,5 +1,11 @@
 # SIMSDM
-For AKPSI project
+For AKPSI course final project. This system is build for company to manage their human resource and project. Some feature available on this system are:
+* request employee from other department
+* assign project and its manager
+* create attendance reports
+* create paid leave applications
+* etc.
+
 
 - Clone this project, move to directory
 ```
