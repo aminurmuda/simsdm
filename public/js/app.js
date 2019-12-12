@@ -2467,7 +2467,7 @@ __webpack_require__.r(__webpack_exports__);
       };
       axios.put('/request_employees/' + this.selectedProject.id + '/store-request-employees', form).then(function (result) {
         console.log(result.data);
-        window.location.href = '/request_employees';
+        window.location.href = '/request_employees?type=out';
       })["catch"](function (error) {
         console.log(error);
       });
