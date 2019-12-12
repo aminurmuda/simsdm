@@ -42,9 +42,9 @@
                 <div class="column is-2 has-text-weight-bold">Jenis Kelamin</div>
                 <div class="column">
                     @if($user->gender == 1)
-                        Laki-Laki
-                    @else
                         Perempuan
+                    @else
+                        Laki-Laki
                     @endif
                 </div>        
             </div>
