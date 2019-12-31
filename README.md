@@ -6,7 +6,10 @@ For AKPSI course final project. This system is build for company to manage their
 * create paid leave applications
 * etc.
 
+## Screenshot
+![alt test](public/images/simsdm.png)
 
+To set up the project, you must do the following
 - Clone this project, move to directory
 ```
 git clone https://github.com/aminurmuda/simsdm.git
